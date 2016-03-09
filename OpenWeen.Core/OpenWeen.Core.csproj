@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6ACABB58-681F-413F-B402-56A36E53263E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenWeen.Core</RootNamespace>
+    <AssemblyName>OpenWeen.Core</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Api\Attitudes\attitudes.cs" />
+    <Compile Include="Api\Comments\Comment.cs" />
+    <Compile Include="Api\Comments\CommentBase.cs" />
+    <Compile Include="Api\Constants.cs" />
+    <Compile Include="Api\DirectMessages\DirectMessages.cs" />
+    <Compile Include="Api\Entity.cs" />
+    <Compile Include="Api\Favorites\FavorList.cs" />
+    <Compile Include="Api\Friendships\Friends.cs" />
+    <Compile Include="Api\Friendships\Groups.cs" />
+    <Compile Include="Api\Remind\Remind.cs" />
+    <Compile Include="Api\Search\Search.cs" />
+    <Compile Include="Api\Search\Topics.cs" />
+    <Compile Include="Api\ShortUrl\ShortUrl.cs" />
+    <Compile Include="Api\Statuses\Bilateral.cs" />
+    <Compile Include="Api\Statuses\Emotions.cs" />
+    <Compile Include="Api\Statuses\Helpers.cs" />
+    <Compile Include="Api\Statuses\Home.cs" />
+    <Compile Include="Api\Statuses\Mentions.cs" />
+    <Compile Include="Api\Statuses\Query.cs" />
+    <Compile Include="Api\Statuses\Repost.cs" />
+    <Compile Include="Api\Statuses\StatusesBase.cs" />
+    <Compile Include="Api\Statuses\UserTimeline.cs" />
+    <Compile Include="Api\User\Account.cs" />
+    <Compile Include="Api\User\User.cs" />
+    <Compile Include="Exception\Exception.cs" />
+    <Compile Include="Extension\EncodingExtension.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="Helper\LoginDataHelper.cs" />
+    <Compile Include="Model\ADModel.cs" />
+    <Compile Include="Model\AnnotationModel.cs" />
+    <Compile Include="Model\BaseListModel.cs" />
+    <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\CommentListModel.cs" />
+    <Compile Include="Model\CommentModel.cs" />
+    <Compile Include="Model\DirectMessageListModel.cs" />
+    <Compile Include="Model\DirectMessageModel.cs" />
+    <Compile Include="Model\DirectMessageUserListModel.cs" />
+    <Compile Include="Model\DirectMessageUserModel.cs" />
+    <Compile Include="Model\EmotionModel.cs" />
+    <Compile Include="Model\GeoModel.cs" />
+    <Compile Include="Model\GroupListModel.cs" />
+    <Compile Include="Model\GroupModel.cs" />
+    <Compile Include="Model\MessageListModel.cs" />
+    <Compile Include="Model\MessageModel.cs" />
+    <Compile Include="Model\RepostListModel.cs" />
+    <Compile Include="Model\UnReadModel.cs" />
+    <Compile Include="Model\UserListModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
