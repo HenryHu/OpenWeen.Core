@@ -6,12 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenWeen.Core.Model
+namespace OpenWeen.Core.Model.User
 {
-    public class UserModel
+    public class UserModel : UserBaseModel
     {
-        [JsonProperty("id")]
-        public string ID { get; set; }
         [JsonProperty("screen_name")]
         public string ScreenName { get; set; }
         [JsonProperty("name")]
@@ -34,12 +32,6 @@ namespace OpenWeen.Core.Model
         public string Domain { get; set; }
         [JsonProperty("gender")]
         public string Gender { get; set; }
-        [JsonProperty("followers_count")]
-        public int FollowersCount { get; set; } = 0;
-        [JsonProperty("friends_count")]
-        public int FriendsCount { get; set; } = 0;
-        [JsonProperty("statuses_count")]
-        public int StatusesCount { get; set; } = 0;
         [JsonProperty("favourites_count")]
         public int FavouritesCount { get; set; } = 0;
         [JsonProperty("verified_type")]

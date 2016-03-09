@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using OpenWeen.Core.Exception;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
+using OpenWeen.Core.Model.Status;
 
 namespace OpenWeen.Core.Api.Statuses
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenWeen.Core.Model
+namespace OpenWeen.Core.Model.DirectMessage
 {
     public class DirectMessageUserModel
     {

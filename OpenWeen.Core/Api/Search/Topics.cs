@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
+using OpenWeen.Core.Model.Status;
 using System;
 using System.Collections.Generic;
 using System.Linq;

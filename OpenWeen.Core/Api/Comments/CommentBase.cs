@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
+using OpenWeen.Core.Model.Comment;
 
 namespace OpenWeen.Core.Api.Comments
 {

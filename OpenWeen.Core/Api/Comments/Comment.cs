@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
 using System.Net.Http;
+using OpenWeen.Core.Model.Comment;
 
 namespace OpenWeen.Core.Api.Comments
 {

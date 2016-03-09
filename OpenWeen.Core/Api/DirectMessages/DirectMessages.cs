@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OpenWeen.Core.Model.DirectMessage;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
 using System;

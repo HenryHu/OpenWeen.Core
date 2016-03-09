@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using OpenWeen.Core.Model;
+using OpenWeen.Core.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenWeen.Core.Model
+namespace OpenWeen.Core.Model.Status
 {
     public class MessageModel
     {

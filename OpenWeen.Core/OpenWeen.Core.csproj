@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Api\Attitudes\attitudes.cs" />
+    <Compile Include="Api\Attitudes\Attitudes.cs" />
     <Compile Include="Api\Comments\Comment.cs" />
     <Compile Include="Api\Comments\CommentBase.cs" />
     <Compile Include="Api\Constants.cs" />
@@ -66,22 +66,23 @@
     <Compile Include="Model\AnnotationModel.cs" />
     <Compile Include="Model\BaseListModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\CommentListModel.cs" />
-    <Compile Include="Model\CommentModel.cs" />
-    <Compile Include="Model\DirectMessageListModel.cs" />
-    <Compile Include="Model\DirectMessageModel.cs" />
-    <Compile Include="Model\DirectMessageUserListModel.cs" />
-    <Compile Include="Model\DirectMessageUserModel.cs" />
+    <Compile Include="Model\Comment\CommentListModel.cs" />
+    <Compile Include="Model\Comment\CommentModel.cs" />
+    <Compile Include="Model\DirectMessage\DirectMessageListModel.cs" />
+    <Compile Include="Model\DirectMessage\DirectMessageModel.cs" />
+    <Compile Include="Model\DirectMessage\DirectMessageUserListModel.cs" />
+    <Compile Include="Model\DirectMessage\DirectMessageUserModel.cs" />
     <Compile Include="Model\EmotionModel.cs" />
     <Compile Include="Model\GeoModel.cs" />
-    <Compile Include="Model\GroupListModel.cs" />
-    <Compile Include="Model\GroupModel.cs" />
-    <Compile Include="Model\MessageListModel.cs" />
-    <Compile Include="Model\MessageModel.cs" />
-    <Compile Include="Model\RepostListModel.cs" />
+    <Compile Include="Model\Status\GroupListModel.cs" />
+    <Compile Include="Model\Status\GroupModel.cs" />
+    <Compile Include="Model\Status\MessageListModel.cs" />
+    <Compile Include="Model\Status\MessageModel.cs" />
+    <Compile Include="Model\Status\RepostListModel.cs" />
     <Compile Include="Model\UnReadModel.cs" />
-    <Compile Include="Model\UserListModel.cs" />
-    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\User\UserBaseModel.cs" />
+    <Compile Include="Model\User\UserListModel.cs" />
+    <Compile Include="Model\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +94,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

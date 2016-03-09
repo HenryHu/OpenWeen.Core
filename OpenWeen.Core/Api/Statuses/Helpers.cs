@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
+using OpenWeen.Core.Model.Status;
 
 namespace OpenWeen.Core.Api.Statuses
 {
