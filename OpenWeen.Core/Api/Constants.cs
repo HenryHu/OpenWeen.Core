@@ -15,9 +15,11 @@
         public const string USER_COUNTS = SINA_BASE_URL + "users/counts.json";//User.GetUserInfo
 
         // Statuses
+        public const string PUBLIC_TIMELINE = SINA_BASE_URL + "statuses/public_timeline";//Public.GetPublicTimeline
         public const string HOME_TIMELINE = SINA_BASE_URL + "statuses/home_timeline.json";//Home.GetTimeline
         public const string USER_TIMELINE = SINA_BASE_URL + "statuses/user_timeline.json";//UserTimeline.GetUserTimeline
         public const string BILATERAL_TIMELINE = SINA_BASE_URL + "statuses/bilateral_timeline.json";//Bilateral.GetBilateral
+        public const string TIMELINE_BATCH = SINA_BASE_URL + "statuses/timeline_batch.json";//Timeline.GetTimelineBatch
         public const string MENTIONS = SINA_BASE_URL + "statuses/mentions.json";//Mentions.GetMentions,Mentions.GetMentionsSince
         public const string REPOST_TIMELINE = SINA_BASE_URL + "statuses/repost_timeline.json";//Repost.GetRepost
         public const string UPDATE = SINA_BASE_URL + "statuses/update.json";//Helpers.Post
@@ -29,6 +31,7 @@
         public const string QUERY_ID = SINA_BASE_URL + "statuses/queryid.json";//Query.QueryID
         public const string QUERY_MID = SINA_BASE_URL + "statuses/querymid.json";//Query.QueryMID
         public const string SHOW = SINA_BASE_URL + "statuses/show.json";//Query.GetStatus
+        public const string SHOW_BATCH = SINA_BASE_URL + "statuses/show_batch.json";//Query.GetStatus
         public const string EMOTIONS = SINA_BASE_URL + "emotions.json";//Emotions.GetEmotions
 
         // Comments

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Favorites
 {
-    public class FavorList : Statuses.StatusesBase
+    public class FavorList
     {
         public static async Task<MessageListModel> GetFavorList(int count, int page)
             => await Get(count, page, Constants.FAVORITES_LIST);
