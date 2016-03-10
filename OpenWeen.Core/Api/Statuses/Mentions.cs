@@ -9,6 +9,7 @@ using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
+using Newtonsoft.Json.Linq;
 
 namespace OpenWeen.Core.Api.Statuses
 {
@@ -38,6 +39,21 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(filter_by_type), filter_by_type.ToString("D") },
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.MENTIONS, param));
+        }
+        /// <summary>
+        /// 屏蔽某个@到我的微博以及后续由对其转发引起的@提及
+        /// </summary>
+        /// <param name="id">需要屏蔽的@提到我的微博ID。此ID必须在statuses/mentions列表中。</param>
+        /// <param name="follow_up">是否仅屏蔽当前微博。0：仅屏蔽当前@提到我的微博；1：屏蔽当前@提到我的微博，以及后续对其转发而引起的@提到我的微博。默认1。</param>
+        /// <returns></returns>
+        public static async Task<bool> Shield(long id,ShieldType follow_up = ShieldType.WithFollowUp)
+        {
+            Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
+            {
+                { nameof(id), new StringContent(id.ToString()) },
+                { nameof(follow_up), new StringContent(follow_up.ToString("D")) },
+            };
+            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.MENTIONS_SHIELD, param)).Value<bool>("result");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace OpenWeen.Core.Api.Statuses
 {
     public class Emotions
     {
-        public static async Task<List<EmotionModel>> GetEmotions()
-            => JsonConvert.DeserializeObject<List<EmotionModel>>(await HttpHelper.GetStringAsync(Constants.EMOTIONS, null));
+        public static async Task<IEnumerable<EmotionModel>> GetEmotions()
+            => JsonConvert.DeserializeObject<IEnumerable<EmotionModel>>(await HttpHelper.GetStringAsync(Constants.EMOTIONS, null));
     }
 }

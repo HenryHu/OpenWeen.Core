@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenWeen.Core.Helper;
 
-namespace OpenWeen.Core.Api.Attitudes
+namespace OpenWeen.Core.Api
 {
     public class Attitudes
     {

@@ -63,6 +63,13 @@ namespace OpenWeen.Core.Model.User
         public string Coverimage { get; set; } = "";
         [JsonProperty("cover_image_phone")]
         public string CoverImagePhone { get; set; } = "";
+        [JsonProperty("weihao")]
+        public string Weihao { get; set; }
+        [JsonProperty("lang")]
+        public string Lang { get; set; }
+        [JsonProperty("level")]
+        public int Level { get; set; }
+
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 }

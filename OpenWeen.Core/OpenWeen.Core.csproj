@@ -35,12 +35,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Api\Attitudes\Attitudes.cs" />
-    <Compile Include="Api\Comments\Comment.cs" />
-    <Compile Include="Api\Comments\CommentBase.cs" />
+    <Compile Include="Api\Blocks\Blocks.cs" />
+    <Compile Include="Api\Comments\Comments.cs" />
     <Compile Include="Api\Constants.cs" />
     <Compile Include="Api\DirectMessages\DirectMessages.cs" />
     <Compile Include="Api\Entity.cs" />
-    <Compile Include="Api\Favorites\FavorList.cs" />
+    <Compile Include="Api\Favorites\Favorites.cs" />
     <Compile Include="Api\Friendships\Friends.cs" />
     <Compile Include="Api\Friendships\Groups.cs" />
     <Compile Include="Api\Remind\Remind.cs" />
@@ -49,7 +49,8 @@
     <Compile Include="Api\ShortUrl\ShortUrl.cs" />
     <Compile Include="Api\Statuses\Bilateral.cs" />
     <Compile Include="Api\Statuses\Emotions.cs" />
-    <Compile Include="Api\Statuses\Helpers.cs" />
+    <Compile Include="Api\Statuses\Filter.cs" />
+    <Compile Include="Api\Statuses\PostWeibo.cs" />
     <Compile Include="Api\Statuses\Home.cs" />
     <Compile Include="Api\Statuses\Mentions.cs" />
     <Compile Include="Api\Statuses\Public.cs" />
@@ -64,7 +65,15 @@
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\LoginDataHelper.cs" />
     <Compile Include="Model\ADModel.cs" />
-    <Compile Include="Model\AnnotationModel.cs" />
+    <Compile Include="Model\Block\BlockListModel.cs" />
+    <Compile Include="Model\Block\BlockModel.cs" />
+    <Compile Include="Model\Favor\FavorListModel.cs" />
+    <Compile Include="Model\Favor\FavorModel.cs" />
+    <Compile Include="Model\Favor\FavorTagListModel.cs" />
+    <Compile Include="Model\Favor\FavorTagModel.cs" />
+    <Compile Include="Model\LimitStatusModel.cs" />
+    <Compile Include="Model\Status\PictureModel.cs" />
+    <Compile Include="Model\Status\WeiboVisibilityModel.cs" />
     <Compile Include="Model\Types\AuthorType.cs" />
     <Compile Include="Model\BaseListModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -84,7 +93,10 @@
     <Compile Include="Model\Status\MessageModel.cs" />
     <Compile Include="Model\Status\RepostListModel.cs" />
     <Compile Include="Model\Types\QueryType.cs" />
+    <Compile Include="Model\Types\RepostType.cs" />
+    <Compile Include="Model\Types\ShieldType.cs" />
     <Compile Include="Model\Types\SourceType.cs" />
+    <Compile Include="Model\Types\WeiboVisibility.cs" />
     <Compile Include="Model\UnReadModel.cs" />
     <Compile Include="Model\User\UserBaseModel.cs" />
     <Compile Include="Model\User\UserListModel.cs" />

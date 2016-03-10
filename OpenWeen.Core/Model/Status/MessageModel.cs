@@ -55,8 +55,11 @@ namespace OpenWeen.Core.Model.Status
         public int CommentsCount { get; set; }
         [JsonProperty("attitudes_count")]
         public int AttitudesCount { get; set; }
-        [JsonProperty("annotations")]
-        public List<AnnotationModel> Annotations { get; set; }
+        [JsonProperty("mlevel")]
+        public int MLevel { get; set; }
+        [JsonProperty("visible")]
+        public WeiboVisibilityModel Visible { get; set; }
+
         public override string ToString() => JsonConvert.SerializeObject(this);
 
     }

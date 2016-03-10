@@ -12,24 +12,52 @@ namespace OpenWeen.Core.Api.User
 {
     public class User
     {
-        public static async Task<UserModel> GetUser(string uid)
+        /// <summary>
+        /// 根据用户ID获取用户信息
+        /// </summary>
+        /// <param name="uid">需要查询的用户ID。</param>
+        /// <returns></returns>
+        public static async Task<UserModel> GetUser(long uid)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
-                { nameof(uid), uid }
+                { nameof(uid), uid.ToString() }
             };
-            return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)).Replace("-Weibo", ""));
+            return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)));
         }
 
-        public static async Task<UserModel> GetUserByName(string name)
+        /// <summary>
+        /// 根据用户ID获取用户信息
+        /// </summary>
+        /// <param name="uid">需要查询的用户昵称。</param>
+        /// <returns></returns>
+        public static async Task<UserModel> GetUser(string screen_name)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
-                { "screen_name", name }
+                { nameof(screen_name), screen_name }
             };
-            return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)).Replace("-Weibo", ""));
+            return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)));
+        }
+        /// <summary>
+        /// 通过个性化域名获取用户资料以及用户最新的一条微博
+        /// </summary>
+        /// <param name="domain">需要查询的个性化域名。</param>
+        /// <returns></returns>
+        public static async Task<UserModel> GetUserByDomain(string domain)
+        {
+            Dictionary<string, string> param = new Dictionary<string, string>()
+            {
+                { nameof(domain), domain }
+            };
+            return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)));
         }
 
+        /// <summary>
+        /// 批量获取用户的粉丝数、关注数、微博数
+        /// </summary>
+        /// <param name="uids">需要获取数据的用户UID，多个之间用逗号分隔，最多不超过100个。</param>
+        /// <returns></returns>
         public static async Task<IEnumerable<UserBaseModel>> GetUsersInfo(params string[] uids)
         {
             if (uids.Length > 100)
