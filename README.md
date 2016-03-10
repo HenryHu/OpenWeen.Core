@@ -5,6 +5,7 @@ Another Weibo Library
 
 如何使用？  
 -----------  
+[Nuget](https://www.nuget.org/packages/OpenWeen.Core/)  
 OpenWeen.Core.Api.Entity下给AccessToken赋值即可，API在OpenWeen.Core.Api命名空间下。  
 注意：库没有做任何的异常处理，你需要自己处理所有的异常。有些API由于没有权限未经测试。  
 
