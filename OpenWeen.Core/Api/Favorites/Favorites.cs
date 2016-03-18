@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 收藏夹
+    /// </summary>
     public class Favorites
     {
         /// <summary>

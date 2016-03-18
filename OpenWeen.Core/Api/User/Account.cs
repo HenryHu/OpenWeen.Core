@@ -11,6 +11,9 @@ using OpenWeen.Core.Model;
 
 namespace OpenWeen.Core.Api.User
 {
+    /// <summary>
+    /// 账号信息
+    /// </summary>
     public class Account
     {
         /// <summary>

@@ -12,6 +12,9 @@ using OpenWeen.Core.Model.Types;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 评论
+    /// </summary>
     public class Comments
     {
 

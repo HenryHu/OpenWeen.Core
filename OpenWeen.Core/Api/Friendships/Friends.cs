@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Friendships
 {
+    /// <summary>
+    /// 关注/粉丝
+    /// </summary>
     public class Friends
     {
         private static async Task<UserListModel> GetUsers<T>(T uid, int count, int cursor, string url)

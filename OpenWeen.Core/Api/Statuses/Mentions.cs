@@ -13,6 +13,9 @@ using Newtonsoft.Json.Linq;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 提及
+    /// </summary>
     public class Mentions
     {
         /// <summary>

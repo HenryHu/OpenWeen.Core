@@ -24,6 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\OpenWeen.Core.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Api\Attitudes\Attitudes.cs" />
@@ -56,7 +59,6 @@
     <Compile Include="Api\Statuses\Public.cs" />
     <Compile Include="Api\Statuses\Query.cs" />
     <Compile Include="Api\Statuses\Repost.cs" />
-    <Compile Include="Api\Statuses\Timeline.cs" />
     <Compile Include="Api\Statuses\UserTimeline.cs" />
     <Compile Include="Api\User\Account.cs" />
     <Compile Include="Api\User\User.cs" />

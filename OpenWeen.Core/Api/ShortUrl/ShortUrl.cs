@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 短链接
+    /// </summary>
     public class ShortUrl
     {
         /// <summary>

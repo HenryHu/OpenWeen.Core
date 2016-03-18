@@ -12,6 +12,9 @@ using OpenWeen.Core.Model.Types;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 转发列表
+    /// </summary>
     public class Repost
     {
         /// <summary>

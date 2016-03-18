@@ -12,6 +12,9 @@ using OpenWeen.Core.Model.Types;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 主页
+    /// </summary>
     public class Home
     {
         /// <summary>

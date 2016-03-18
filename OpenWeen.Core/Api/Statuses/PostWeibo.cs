@@ -87,7 +87,7 @@ namespace OpenWeen.Core.Api.Statuses
         /// <param name="status">添加的转发文本，内容不超过140个汉字，不填则默认为“转发微博”。</param>
         /// <param name="is_comment">是否在转发的同时发表评论，0：否、1：评论给当前微博、2：评论给原微博、3：都评论，默认为0 。</param>
         /// <returns></returns>
-        public static async Task<bool> Repost(long id, string status, RepostType is_comment = RepostType.None)
+        public static async Task<MessageModel> Repost(long id, string status, RepostType is_comment = RepostType.None)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
@@ -95,8 +95,7 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(id), new StringContent(id.ToString()) },
                 { nameof(is_comment), new StringContent(is_comment.ToString("D")) },
             };
-            var msg = JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.REPOST, param));
-            return !string.IsNullOrEmpty(msg?.IDStr?.Trim());
+            return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.REPOST, param));
         }
 
         /// <summary>

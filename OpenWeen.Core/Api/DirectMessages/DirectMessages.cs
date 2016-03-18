@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 私信
+    /// </summary>
     public class DirectMessages
     {
         /// <summary>

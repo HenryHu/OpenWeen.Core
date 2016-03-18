@@ -11,6 +11,9 @@ using OpenWeen.Core.Model.Types;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 双向关注
+    /// </summary>
     public class Bilateral
     {
         /// <summary>

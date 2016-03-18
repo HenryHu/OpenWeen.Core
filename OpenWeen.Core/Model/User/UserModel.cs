@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Model.User
 {
-    public class UserModel : UserBaseModel
+    public class  UserModel : UserBaseModel
     {
         [JsonProperty("screen_name")]
         public string ScreenName { get; set; }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 屏蔽
+    /// </summary>
     public class Filter
     {
         /// <summary>

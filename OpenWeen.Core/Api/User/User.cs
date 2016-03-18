@@ -10,6 +10,9 @@ using OpenWeen.Core.Model.User;
 
 namespace OpenWeen.Core.Api.User
 {
+    /// <summary>
+    /// 用户信息
+    /// </summary>
     public class User
     {
         /// <summary>
@@ -29,7 +32,7 @@ namespace OpenWeen.Core.Api.User
         /// <summary>
         /// 根据用户ID获取用户信息
         /// </summary>
-        /// <param name="uid">需要查询的用户昵称。</param>
+        /// <param name="screen_name">需要查询的用户昵称。</param>
         /// <returns></returns>
         public static async Task<UserModel> GetUser(string screen_name)
         {

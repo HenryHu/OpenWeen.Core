@@ -10,8 +10,10 @@ using OpenWeen.Core.Helper;
 
 namespace OpenWeen.Core.Api
 {
+    [Obsolete]
     public class Attitudes
     {
+        [Obsolete]
         public static async Task<bool> Like(long id)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
@@ -22,6 +24,7 @@ namespace OpenWeen.Core.Api
             return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.ATTITUDE_CREATE, param)).Value<string>("attitude") == "smile";
         }
 
+        [Obsolete]
         public static async Task<bool> UnLike(long id)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()

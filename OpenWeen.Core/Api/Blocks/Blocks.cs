@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 黑名单
+    /// </summary>
     public class Blocks
     {
         /// <summary>
@@ -56,6 +59,7 @@ namespace OpenWeen.Core.Api
             return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.BLOCKS_DESTROY, param));
         }
 
+
         public static async Task<bool> IsBlocked(long uid, bool invert = false)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
@@ -63,7 +67,7 @@ namespace OpenWeen.Core.Api
                 { nameof(uid), uid.ToString() },
                 { nameof(invert), invert ? "0" : "1" },
             };
-            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.BLOCKS_LIST, param)).Value<bool>("result");
+            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.BLOCKS_EXISTS, param)).Value<bool>("result");
         }
     }
 }

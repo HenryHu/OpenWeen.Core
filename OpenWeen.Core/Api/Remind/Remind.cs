@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
+    /// <summary>
+    /// 消息提醒
+    /// </summary>
     public class Remind
     {
         /// <summary>

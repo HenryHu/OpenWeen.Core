@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Statuses
 {
+    /// <summary>
+    /// 公共首页
+    /// </summary>
     public class Public
     {
         /// <summary>
