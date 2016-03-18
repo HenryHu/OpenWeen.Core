@@ -5,8 +5,24 @@ Another Weibo Library
 
 如何使用？  
 -----------  
+[Nuget](https://www.nuget.org/packages/OpenWeen.Core/)  
 OpenWeen.Core.Api.Entity下给AccessToken赋值即可，API在OpenWeen.Core.Api命名空间下。  
-注意：库没有做任何的异常处理，你需要自己处理所有的异常。  
+注意：库没有做任何的异常处理，你需要自己处理所有的异常。有些API由于没有权限未经测试。  
+
+支持的API  
+-----------  
+<ul>微博(statuses)：读取/写入</ul>
+<ul>评论(comments)：读取/写入</ul>
+<ul>私信(direct_messages)：读取/写入</ul>
+<ul>黑名单(blocks)：读取/写入</ul>
+<ul>用户(users)：读取</ul>
+<ul>关系(friendships)：读取/写入</ul>
+<ul>账号(account)：读取</ul>
+<ul>收藏(favorites)：读取/写入</ul>
+<ul>搜索(search)：读取</ul>
+<ul>提醒(remind)：读取/写入</ul>
+<ul>短链(short_url)：转换</ul>
+
 
 支持平台  
 -----------  
