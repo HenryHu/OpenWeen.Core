@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Model.Block
 {
-    public class BlockListModel : BaseModel
+    public class BlockListModel : BaseListModel
     {
         [JsonProperty("users")]
         public List<BlockModel> Users { get; set; }

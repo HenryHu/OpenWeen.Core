@@ -66,7 +66,8 @@
     <Compile Include="Extension\EncodingExtension.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\LoginDataHelper.cs" />
-    <Compile Include="Model\ADModel.cs" />
+    <Compile Include="Helper\PicturesHelper.cs" />
+    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Block\BlockListModel.cs" />
     <Compile Include="Model\Block\BlockModel.cs" />
     <Compile Include="Model\Favor\FavorListModel.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Model\Status\WeiboVisibilityModel.cs" />
     <Compile Include="Model\Types\AuthorType.cs" />
     <Compile Include="Model\BaseListModel.cs" />
-    <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Comment\CommentListModel.cs" />
     <Compile Include="Model\Comment\CommentModel.cs" />
     <Compile Include="Model\DirectMessage\DirectMessageListModel.cs" />

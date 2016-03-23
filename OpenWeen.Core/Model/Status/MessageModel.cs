@@ -10,21 +10,8 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Model.Status
 {
-    public class MessageModel
+    public class MessageModel : BaseModel
     {
-        [JsonProperty("created_at")]
-        public string CreatedAt { get; set; }
-        public DateTime CreateTime => DateTime.ParseExact(CreatedAt, "ddd MMM dd HH:mm:ss K yyyy", CultureInfo.InvariantCulture);
-        [JsonProperty("id")]
-        public long ID { get; set; }
-        [JsonProperty("mid")]
-        public long MID { get; set; }
-        [JsonProperty("idstr")]
-        public string IDStr { get; set; }
-        [JsonProperty("text")]
-        public string Text { get; set; }
-        [JsonProperty("source")]
-        public string Source { get; set; }
         [JsonProperty("favorited")]
         public bool Favorited { get; set; }
         [JsonProperty("truncated")]
@@ -59,6 +46,8 @@ namespace OpenWeen.Core.Model.Status
         public int MLevel { get; set; }
         [JsonProperty("visible")]
         public WeiboVisibilityModel Visible { get; set; }
+        [JsonProperty("pic_urls")]
+        public List<PictureModel> PicUrls { get; set; }
 
         public override string ToString() => JsonConvert.SerializeObject(this);
 

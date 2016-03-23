@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OpenWeen.Core.Model;
 
 namespace OpenWeen.Core.Model
 {
-    public abstract class BaseListModel : BaseModel
+    public class BaseListModel
     {
-        [JsonProperty("ad")]
-        public List<ADModel> AD { get; set; }
+        [JsonProperty("previous_cursor")]
+        public string PreviousCursor { get; set; }
+        [JsonProperty("next_cursor")]
+        public string NextCursor { get; set; }
+        [JsonProperty("total_number")]
+        public int TotalNumber { get; set; }
     }
 }

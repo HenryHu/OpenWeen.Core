@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace OpenWeen.Core.Api
 {
@@ -110,7 +111,7 @@ namespace OpenWeen.Core.Api
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
-                { "file", new ByteArrayContent(pic) },
+                { "file", new StreamContent(new MemoryStream(pic)) },
             };
             return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync($"{Constants.DIRECT_MESSAGES_UPLOAD_PIC}{toUid}", param)).Value<string>("fid");
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Model.DirectMessage
 {
-    public class DirectMessageListModel : BaseModel
+    public class DirectMessageListModel : BaseListModel
     {
         [JsonProperty("direct_messages")]
         public List<DirectMessageModel> DirectMessages { get; set; }

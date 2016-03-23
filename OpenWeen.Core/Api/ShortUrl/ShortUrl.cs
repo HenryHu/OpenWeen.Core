@@ -24,7 +24,7 @@ namespace OpenWeen.Core.Api
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
-                { "url_long", System.Net.WebUtility.UrlEncode(url)},
+                { "url_long", url},
             };
             var res = JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.SHORT_URL_SHORTEN, param)).Value<JArray>("urls")[0];
             if (res.Value<bool>("result"))
@@ -41,7 +41,7 @@ namespace OpenWeen.Core.Api
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
-                { "url_short", System.Net.WebUtility.UrlEncode(url)},
+                { "url_short", url},
             };
             var res = JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.SHORT_URL_EXPAND, param)).Value<JArray>("urls")[0];
             if (res.Value<bool>("result"))

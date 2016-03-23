@@ -11,6 +11,7 @@ using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
 using System.Net;
+using System.IO;
 
 namespace OpenWeen.Core.Api.Statuses
 {
@@ -32,7 +33,7 @@ namespace OpenWeen.Core.Api.Statuses
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
-                { nameof(status), new StringContent(WebUtility.UrlEncode(status)) },
+                { nameof(status), new StringContent(status) },
                 { nameof(visible), new StringContent(visible.ToString("D")) },
                 { "lat", new StringContent(plat.ToString()) },
                 { "long", new StringContent(plong.ToString()) },
@@ -56,7 +57,7 @@ namespace OpenWeen.Core.Api.Statuses
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
                 { nameof(status), new StringContent(status) },
-                { nameof(pic), new ByteArrayContent(pic) },
+                { nameof(pic), new StreamContent(new MemoryStream(pic)) },
                 { nameof(visible), new StringContent(visible.ToString("D")) },
                 { "lat", new StringContent(plat.ToString()) },
                 { "long", new StringContent(plong.ToString()) },
@@ -91,7 +92,7 @@ namespace OpenWeen.Core.Api.Statuses
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
-                { nameof(status), new StringContent(WebUtility.UrlEncode(string.IsNullOrEmpty(status) ? "转发微博" : status)) },
+                { nameof(status), new StringContent(string.IsNullOrEmpty(status) ? "转发微博" : status) },
                 { nameof(id), new StringContent(id.ToString()) },
                 { nameof(is_comment), new StringContent(is_comment.ToString("D")) },
             };
@@ -121,7 +122,7 @@ namespace OpenWeen.Core.Api.Statuses
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
-                { nameof(pic), new ByteArrayContent(pic) },
+                { nameof(pic), new StreamContent(new MemoryStream(pic)) },
             };
             return JsonConvert.DeserializeObject<PictureModel>(await HttpHelper.PostAsync(Constants.UPLOAD_PIC, param));
         }
@@ -140,7 +141,7 @@ namespace OpenWeen.Core.Api.Statuses
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
-                { nameof(status), new StringContent(WebUtility.UrlEncode(status)) },
+                { nameof(status), new StringContent(status) },
                 { "pic_id", new StringContent(pics) },
                 { nameof(visible), new StringContent(visible.ToString("D")) },
                 { "lat", new StringContent(plat.ToString()) },

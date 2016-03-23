@@ -30,16 +30,16 @@ namespace OpenWeen.Core.Helper
         {
             if (AccessToken == null)
                 throw new InvalidAccessTokenException("AccessToken is null");
-            else
-            {
-                param.Add("access_token", AccessToken);
-                string jsonData = await RequestWith(uri, param, method);
 
-                if (jsonData != null && (jsonData.Contains("{") || jsonData.Contains("[")))
-                    return jsonData;
-                else
-                    throw new InvalidResponseException($"response '{jsonData}' is invalid");
-            }
+            if (param == null)
+                param = new Dictionary<string, string>();
+            param.Add("access_token", AccessToken);
+            string jsonData = await RequestWith(uri, param, method);
+
+            if (jsonData != null && (jsonData.Contains("{") || jsonData.Contains("[")))
+                return jsonData;
+            else
+                throw new InvalidResponseException($"response '{jsonData}' is invalid");
         }
 
         private static string UrlEncode(string uri, Dictionary<string, string> param)
@@ -50,14 +50,47 @@ namespace OpenWeen.Core.Helper
 
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
+            if (AccessToken == null)
+                throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
             {
-                foreach (var item in data)
-                    formData.Add(item.Value, item.Key);
-                using (var res = await client.PostAsync(uri, formData))
+                if (data.Values.Count(item=>item.GetType() == typeof(StreamContent)) > 0)
                 {
-                    return await res.Content.ReadAsStringAsync();
+                    using (var formData = new MultipartFormDataContent())
+                    {
+                        foreach (var item in data)
+                        {
+                            if (item.Value.GetType() == typeof(StreamContent))
+                            {
+                                formData.Add(item.Value, item.Key, "pic.png");
+                            }
+                            else
+                            {
+                                formData.Add(item.Value, item.Key);
+                            }
+                        }
+                        formData.Add(new StringContent(AccessToken), "access_token");
+                        using (var res = await client.PostAsync(uri, formData))
+                        {
+                            return await res.Content.ReadAsStringAsync();
+                        }
+                    }
+                }
+                else
+                {
+                    var items = new Dictionary<string, string>();
+                    foreach (var item in data)
+                    {
+                        items.Add(item.Key, await item.Value.ReadAsStringAsync());
+                    }
+                    items.Add("access_token", AccessToken);
+                    using (var formData = new FormUrlEncodedContent(items))
+                    {
+                        using (var res = await client.PostAsync(uri, formData))
+                        {
+                            return await res.Content.ReadAsStringAsync();
+                        }
+                    }
                 }
             }
         }

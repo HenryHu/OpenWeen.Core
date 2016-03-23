@@ -152,7 +152,7 @@ namespace OpenWeen.Core.Api
         /// </summary>
         /// <param name="id">需要评论的微博ID。</param>
         /// <param name="comment">评论内容，必须做URLencode，内容不超过140个汉字。</param>
-        /// <param name="commentOri">当评论转发微博时，是否评论给原微博，0：否、1：是，默认为0。</param>
+        /// <param name="commentOri">当评论转发微博时，是否评论给原微博，默认为否。</param>
         /// <returns></returns>
         public static async Task<CommentModel> PostComment(long id, string comment, bool commentOri = false)
         {
@@ -170,15 +170,15 @@ namespace OpenWeen.Core.Api
         /// <param name="id">需要评论的微博ID。</param>
         /// <param name="cid">需要回复的评论ID。</param>
         /// <param name="comment">回复评论内容，内容不超过140个汉字。</param>
-        /// <param name="comment_ori">当评论转发微博时，是否评论给原微博，0：否、1：是，默认为0。</param>
-        /// <param name="without_mention">回复中是否自动加入“回复@用户名”，0：是、1：否，默认为0。</param>
+        /// <param name="comment_ori">当评论转发微博时，是否评论给原微博，默认为否。</param>
+        /// <param name="without_mention">回复中是否自动加入“回复@用户名”，默认为否。</param>
         /// <returns></returns>
         public static async Task<CommentModel> Reply(long id, long cid, string comment, bool comment_ori = false, bool without_mention = false)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
                 { nameof(id), new StringContent(id.ToString()) },
-                { nameof(comment), new StringContent(System.Net.WebUtility.UrlEncode(comment)) },
+                { nameof(comment), new StringContent(comment) },
                 { nameof(cid), new StringContent(cid.ToString()) },
                 { nameof(comment_ori), new StringContent(comment_ori ? "1" : "0") },
                 { nameof(without_mention), new StringContent(without_mention ? "1" : "0") },
@@ -201,7 +201,7 @@ namespace OpenWeen.Core.Api
         /// <summary>
         /// 根据评论ID批量删除评论
         /// </summary>
-        /// <param name="cids">需要删除的评论ID，用半角逗号隔开，最多20个。</param>
+        /// <param name="cids">需要删除的评论ID，最多20个。</param>
         /// <returns></returns>
         public static async Task<IEnumerable<CommentModel>> DeleteBatch(params long[] cids)
         {
