@@ -1,15 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Favor;
-using OpenWeen.Core.Model.Status;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
@@ -47,6 +42,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<FavorModel>(await HttpHelper.GetStringAsync(Constants.FAVORITES_SHOW, param));
         }
+
         /// <summary>
         /// 根据标签获取当前登录用户该标签下的收藏列表
         /// </summary>
@@ -64,6 +60,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<FavorListModel>(await HttpHelper.GetStringAsync(Constants.FAVORITES_LIST_BY_TAG, param));
         }
+
         /// <summary>
         /// 获取当前登录用户的收藏标签列表
         /// </summary>
@@ -79,6 +76,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<FavorTagListModel>(await HttpHelper.GetStringAsync(Constants.FAVORITES_TAGS, param));
         }
+
         /// <summary>
         /// 添加一条微博到收藏里
         /// </summary>
@@ -92,6 +90,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<FavorModel>(await HttpHelper.PostAsync(Constants.FAVORITES_CREATE, param));
         }
+
         /// <summary>
         /// 取消收藏一条微博
         /// </summary>
@@ -119,6 +118,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.FAVORITES_DESTROY_BATCH, param)).Value<bool>("result");
         }
+
         /// <summary>
         /// 更新一条收藏的收藏标签
         /// </summary>

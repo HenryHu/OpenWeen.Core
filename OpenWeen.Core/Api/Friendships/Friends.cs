@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
-using OpenWeen.Core.Model.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using OpenWeen.Core.Helper;
+using OpenWeen.Core.Model.User;
 
 namespace OpenWeen.Core.Api.Friendships
 {
@@ -67,6 +63,7 @@ namespace OpenWeen.Core.Api.Friendships
                 param.Add(nameof(suid), suid.ToString());
             return JsonConvert.DeserializeObject<UserListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_FRIENDS_IN_COMMON, param));
         }
+
         /// <summary>
         /// 获取用户的双向关注列表，即互粉列表
         /// </summary>
@@ -86,6 +83,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<UserListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_FRIENDS_BILATERAL, param));
         }
+
         /// <summary>
         /// 获取用户的粉丝列表
         /// </summary>
@@ -121,6 +119,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<IEnumerable<UserModel>>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_FOLLOWERS_ACTIVE, param));
         }
+
         /// <summary>
         /// 获取当前登录用户的关注人中又关注了指定用户的用户列表
         /// </summary>
@@ -152,6 +151,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_CREATE, param));
         }
+
         /// <summary>
         /// 关注一个用户
         /// </summary>
@@ -179,6 +179,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_DESTROY, param));
         }
+
         /// <summary>
         /// 取消关注一个用户
         /// </summary>

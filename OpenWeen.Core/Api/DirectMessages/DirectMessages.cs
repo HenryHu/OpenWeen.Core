@@ -1,15 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using OpenWeen.Core.Model.DirectMessage;
-using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using OpenWeen.Core.Helper;
+using OpenWeen.Core.Model.DirectMessage;
 
 namespace OpenWeen.Core.Api
 {
@@ -53,6 +49,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<DirectMessageListModel>(await HttpHelper.GetStringAsync(Constants.DIRECT_MESSAGES_CONVERSATION, param));
         }
+
         /// <summary>
         /// 获取当前登录用户收到的最新私信列表
         /// </summary>
@@ -90,6 +87,7 @@ namespace OpenWeen.Core.Api
             };
             await HttpHelper.PostAsync(Constants.DIRECT_MESSAGES_SEND, param);
         }
+
         /// <summary>
         /// 发送一条私信【该接口已停止开放】
         /// </summary>
@@ -107,7 +105,8 @@ namespace OpenWeen.Core.Api
             };
             await HttpHelper.PostAsync(Constants.DIRECT_MESSAGES_SEND, param);
         }
-        public static async Task<string> SendPicture(byte[] pic,string toUid)
+
+        public static async Task<string> SendPicture(byte[] pic, string toUid)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {

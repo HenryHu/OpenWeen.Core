@@ -1,15 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Friendships
 {
@@ -24,6 +20,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <returns></returns>
         public static async Task<GroupListModel> GetGroups()
             => JsonConvert.DeserializeObject<GroupListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_GROUPS, null));
+
         /// <summary>
         /// 判断某个用户是否是当前登录用户指定好友分组内的成员
         /// </summary>
@@ -39,6 +36,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_GROUPS_IS_MEMBER, param)).Value<bool>("lists");
         }
+
         /// <summary>
         /// 获取当前登录用户某一好友分组的微博列表
         /// </summary>
@@ -49,7 +47,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <param name="page">返回结果的页码，默认为1。</param>
         /// <param name="feature">过滤类型ID，0：全部、1：原创、2：图片、3：视频、4：音乐，默认为0。</param>
         /// <returns></returns>
-        public static async Task<MessageListModel> GetGroupTimeline(string list_id, long since_id = 0,long max_id = 0, int count = 50, int page = 1, FeatureType feature = FeatureType.All)
+        public static async Task<MessageListModel> GetGroupTimeline(string list_id, long since_id = 0, long max_id = 0, int count = 50, int page = 1, FeatureType feature = FeatureType.All)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -62,6 +60,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_GROUPS_TIMELINE, param));
         }
+
         /// <summary>
         /// 添加关注用户到好友分组
         /// </summary>
@@ -77,6 +76,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<GroupModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_GROUPS_MEMBERS_ADD, param));
         }
+
         /// <summary>
         /// 删除好友分组内的关注用户
         /// </summary>
@@ -92,6 +92,7 @@ namespace OpenWeen.Core.Api.Friendships
             };
             return JsonConvert.DeserializeObject<GroupModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_GROUPS_MEMBERS_DESTROY, param));
         }
+
         /// <summary>
         /// 创建好友分组
         /// </summary>
@@ -109,7 +110,7 @@ namespace OpenWeen.Core.Api.Friendships
                 param.Add(nameof(description), new StringContent(description));
             if (tags?.Length > 0)
                 param.Add(nameof(tags), new StringContent(string.Join(",", tags)));
-            return JsonConvert.DeserializeObject<GroupModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_GROUPS_CREATE, param))    ;
+            return JsonConvert.DeserializeObject<GroupModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_GROUPS_CREATE, param));
         }
 
         /// <summary>

@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
+﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model.Comment;
 using OpenWeen.Core.Model.Types;
 
@@ -17,7 +13,6 @@ namespace OpenWeen.Core.Api
     /// </summary>
     public class Comments
     {
-
         /// <summary>
         /// 根据微博ID返回某条微博的评论列表
         /// </summary>
@@ -28,7 +23,7 @@ namespace OpenWeen.Core.Api
         /// <param name="page">返回结果的页码，默认为1。</param>
         /// <param name="filter_by_author">作者筛选类型，0：全部、1：我关注的人、2：陌生人，默认为0。</param>
         /// <returns></returns>
-        public static async Task<CommentListModel> GetCommentStatus(long id, long since_id = 0, long max_id = 0,  int count = 20, int page = 1, AuthorType filter_by_author = AuthorType.All)
+        public static async Task<CommentListModel> GetCommentStatus(long id, long since_id = 0, long max_id = 0, int count = 20, int page = 1, AuthorType filter_by_author = AuthorType.All)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -133,12 +128,13 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<CommentListModel>(await HttpHelper.GetStringAsync(Constants.COMMENTS_MENTIONS, param));
         }
+
         /// <summary>
         /// 根据评论ID批量返回评论信息
         /// </summary>
         /// <param name="cids">需要查询的批量评论ID，用半角逗号分隔，最大50。</param>
         /// <returns></returns>
-        public static async Task<IEnumerable<CommentModel>> Batch (params long[] cids)
+        public static async Task<IEnumerable<CommentModel>> Batch(params long[] cids)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -164,6 +160,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync(Constants.COMMENTS_CREATE, param));
         }
+
         /// <summary>
         /// 回复一条评论
         /// </summary>
@@ -185,6 +182,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync(Constants.COMMENTS_REPLY, param));
         }
+
         /// <summary>
         /// 删除一条评论
         /// </summary>
@@ -198,6 +196,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync(Constants.COMMENTS_DESTROY, param));
         }
+
         /// <summary>
         /// 根据评论ID批量删除评论
         /// </summary>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenWeen.Core.Model.Types
+﻿namespace OpenWeen.Core.Model.Types
 {
     /// <summary>
     /// 私信类型
@@ -15,6 +9,7 @@ namespace OpenWeen.Core.Model.Types
         /// 发件箱
         /// </summary>
         Outbox = 0,
+
         /// <summary>
         /// 收件箱
         /// </summary>

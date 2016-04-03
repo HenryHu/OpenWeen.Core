@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
@@ -29,6 +26,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<UnReadModel>(await HttpHelper.GetStringAsync(Constants.REMIND_UNREAD_COUNT, param));
         }
+
         /// <summary>
         /// 对当前登录用户某一种消息未读数进行清零
         /// </summary>
@@ -43,6 +41,7 @@ namespace OpenWeen.Core.Api
             await HttpHelper.PostAsync(Constants.REMIND_UNREAD_SET_COUNT, param);
         }
     }
+
     public sealed class RemindType
     {
         public static string Follower => "follower";

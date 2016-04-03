@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api.Search
 {
@@ -30,6 +27,7 @@ namespace OpenWeen.Core.Api.Search
             };
             return JsonConvert.DeserializeObject<T>(await HttpHelper.GetStringAsync(uri, param));
         }
+
         public static async Task<IEnumerable<string>> SuggestAtUser(string q, int count)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()

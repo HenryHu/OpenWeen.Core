@@ -1,15 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
-using Newtonsoft.Json.Linq;
 
 namespace OpenWeen.Core.Api.Statuses
 {
@@ -43,13 +39,14 @@ namespace OpenWeen.Core.Api.Statuses
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.MENTIONS, param));
         }
+
         /// <summary>
         /// 屏蔽某个@到我的微博以及后续由对其转发引起的@提及
         /// </summary>
         /// <param name="id">需要屏蔽的@提到我的微博ID。此ID必须在statuses/mentions列表中。</param>
         /// <param name="follow_up">是否仅屏蔽当前微博。0：仅屏蔽当前@提到我的微博；1：屏蔽当前@提到我的微博，以及后续对其转发而引起的@提到我的微博。默认1。</param>
         /// <returns></returns>
-        public static async Task<bool> Shield(long id,ShieldType follow_up = ShieldType.WithFollowUp)
+        public static async Task<bool> Shield(long id, ShieldType follow_up = ShieldType.WithFollowUp)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {

@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenWeen.Core.Exception;
+using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
 
@@ -44,7 +38,7 @@ namespace OpenWeen.Core.Api.Statuses
         /// <param name="is_batch">是否使用批量模式，0：否、1：是，默认为0。</param>
         /// <param name="id">需要查询的微博（评论、私信）ID，批量模式下，用半角逗号分隔，最多不超过20个。</param>
         /// <returns></returns>
-        public static async Task<string> QueryMID(QueryType type = QueryType.Weibo,bool is_batch = false, params long[] id)
+        public static async Task<string> QueryMID(QueryType type = QueryType.Weibo, bool is_batch = false, params long[] id)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -54,6 +48,7 @@ namespace OpenWeen.Core.Api.Statuses
             };
             return await HttpHelper.GetStringAsync(Constants.QUERY_MID, param);
         }
+
         /// <summary>
         /// 根据微博ID获取单条微博内容
         /// </summary>
@@ -67,6 +62,7 @@ namespace OpenWeen.Core.Api.Statuses
             };
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.GetStringAsync(Constants.SHOW, param));
         }
+
         /// <summary>
         /// 根据微博ID批量获取微博信息
         /// </summary>

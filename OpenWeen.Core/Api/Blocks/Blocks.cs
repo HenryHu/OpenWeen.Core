@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model.Block;
 using OpenWeen.Core.Model.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
@@ -32,6 +29,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<BlockListModel>(await HttpHelper.GetStringAsync(Constants.BLOCKS_LIST, param));
         }
+
         /// <summary>
         /// 将用户添加到黑名单
         /// </summary>
@@ -45,6 +43,7 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.BLOCKS_CREATE, param));
         }
+
         /// <summary>
         /// 将用户从黑名单移除
         /// </summary>
@@ -58,7 +57,6 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.BLOCKS_DESTROY, param));
         }
-
 
         public static async Task<bool> IsBlocked(long uid, bool invert = false)
         {

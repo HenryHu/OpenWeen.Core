@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
-using OpenWeen.Core.Model;
 using OpenWeen.Core.Model.User;
 
 namespace OpenWeen.Core.Api.User
@@ -42,6 +39,7 @@ namespace OpenWeen.Core.Api.User
             };
             return JsonConvert.DeserializeObject<UserModel>((await HttpHelper.GetStringAsync(Constants.USER_SHOW, param)));
         }
+
         /// <summary>
         /// 通过个性化域名获取用户资料以及用户最新的一条微博
         /// </summary>

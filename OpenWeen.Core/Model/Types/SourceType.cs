@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenWeen.Core.Model.Types
+﻿namespace OpenWeen.Core.Model.Types
 {
     /// <summary>
     /// 来源类型
@@ -15,10 +9,12 @@ namespace OpenWeen.Core.Model.Types
         /// 全部
         /// </summary>
         All = 0,
+
         /// <summary>
         /// 来自微博
         /// </summary>
         Weibo,
+
         /// <summary>
         /// 来自微群
         /// </summary>

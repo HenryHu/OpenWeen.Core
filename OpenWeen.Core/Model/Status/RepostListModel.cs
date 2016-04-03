@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-using OpenWeen.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace OpenWeen.Core.Model.Status
 {
@@ -12,6 +7,7 @@ namespace OpenWeen.Core.Model.Status
     {
         [JsonProperty("reposts")]
         public List<MessageModel> Reposts { get; set; }
+
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 }

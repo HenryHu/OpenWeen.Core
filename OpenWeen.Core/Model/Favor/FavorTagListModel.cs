@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace OpenWeen.Core.Model.Favor
 {
@@ -11,6 +7,7 @@ namespace OpenWeen.Core.Model.Favor
     {
         [JsonProperty("tags")]
         public List<FavorTagModel> Tags { get; set; }
+
         [JsonProperty("total_number")]
         public int TotalNumber { get; set; }
     }

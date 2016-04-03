@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json.Linq;
-using OpenWeen.Core.Api;
-
-using static OpenWeen.Core.Api.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using OpenWeen.Core.Exception;
-using System.Diagnostics;
+using static OpenWeen.Core.Api.Entity;
 
 namespace OpenWeen.Core.Helper
 {
     internal static class HttpHelper
     {
-        private static async Task<string> RequestWith(string uri, Dictionary<string,string> param, HttpMethod method)
+        private static async Task<string> RequestWith(string uri, Dictionary<string, string> param, HttpMethod method)
         {
             var req = WebRequest.CreateHttp(UrlEncode(uri, param));
             req.Method = method.Method;
@@ -54,7 +48,7 @@ namespace OpenWeen.Core.Helper
                 throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
             {
-                if (data.Values.Count(item=>item.GetType() == typeof(StreamContent)) > 0)
+                if (data.Values.Count(item => item.GetType() == typeof(StreamContent)) > 0)
                 {
                     using (var formData = new MultipartFormDataContent())
                     {

@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-using OpenWeen.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace OpenWeen.Core.Model.DirectMessage
 {

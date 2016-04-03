@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using OpenWeen.Core.Exception;
 using OpenWeen.Core.Extension;
 
@@ -29,6 +26,7 @@ namespace OpenWeen.Core.Helper
             data = data.Substring(START.Length, data.Length - END.Length - 2);
             return Encoding.UTF8.GetString(FromBase64String(data)).Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
         }
+
         private static bool CheckData(string data)
             => data.StartsWith(START) && data.Length > START.Length + END.Length && data.EndsWith(END);
     }

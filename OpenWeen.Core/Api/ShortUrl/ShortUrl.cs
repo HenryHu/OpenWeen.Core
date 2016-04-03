@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Exception;
 using OpenWeen.Core.Helper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpenWeen.Core.Api
 {
@@ -32,6 +29,7 @@ namespace OpenWeen.Core.Api
             else
                 throw new ShortUrlException($"Can not shorten {url}");
         }
+
         /// <summary>
         /// 将短链接还原成原始的长链接
         /// </summary>
