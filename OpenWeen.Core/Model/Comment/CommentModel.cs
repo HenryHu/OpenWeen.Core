@@ -21,7 +21,5 @@ namespace OpenWeen.Core.Model.Comment
         public MessageModel Status { get; set; }
         [JsonProperty("reply_comment")]
         public CommentModel ReplyComment { get; set; }
-        [JsonProperty("user")]
-        public UserModel User { get; set; }
     }
 }

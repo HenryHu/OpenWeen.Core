@@ -32,8 +32,6 @@ namespace OpenWeen.Core.Model.Status
         public string OriginalPic { get; set; }
         [JsonProperty("geo")]
         public GeoModel Geo { get; set; }
-        [JsonProperty("user")]
-        public UserModel User { get; set; }
         [JsonProperty("retweeted_status")]
         public MessageModel RetweetedStatus { get; set; }
         [JsonProperty("reposts_count")]

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OpenWeen.Core.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,5 +24,7 @@ namespace OpenWeen.Core.Model
         public string Text { get; set; }
         [JsonProperty("source")]
         public string Source { get; set; }
+        [JsonProperty("user")]
+        public UserModel User { get; set; }
     }
 }

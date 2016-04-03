@@ -34,7 +34,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <param name="count">单页返回的记录条数，默认为50，最大不超过200。</param>
         /// <param name="cursor">返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。</param>
         /// <returns></returns>
-        public static async Task<UserListModel> GetFriends(long uid, int count, int cursor)
+        public static async Task<UserListModel> GetFriends(long uid, int count = 50, int cursor = 0)
             => await GetUsers(uid, count, cursor, Constants.FRIENDSHIPS_FRIENDS);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <param name="count">单页返回的记录条数，默认为50，最大不超过200。</param>
         /// <param name="cursor">返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。</param>
         /// <returns></returns>
-        public static async Task<UserListModel> GetFriends(string screen_name, int count, int cursor)
+        public static async Task<UserListModel> GetFriends(string screen_name, int count = 50, int cursor = 0)
             => await GetUsers(screen_name, count, cursor, Constants.FRIENDSHIPS_FRIENDS);
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <param name="count">单页返回的记录条数，默认为50，最大不超过200。</param>
         /// <param name="cursor">返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。</param>
         /// <returns></returns>
-        public static async Task<UserListModel> GetFollowers(long uid, int count, int cursor)
+        public static async Task<UserListModel> GetFollowers(long uid, int count = 50, int cursor = 0)
             => await GetUsers(uid, count, cursor, Constants.FRIENDSHIPS_FOLLOWERS);
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// <param name="count">单页返回的记录条数，默认为50，最大不超过200。</param>
         /// <param name="cursor">返回结果的游标，下一页用返回值里的next_cursor，上一页用previous_cursor，默认为0。</param>
         /// <returns></returns>
-        public static async Task<UserListModel> GetFollowers(string screen_name, int count, int cursor)
+        public static async Task<UserListModel> GetFollowers(string screen_name, int count = 50, int cursor = 0)
             => await GetUsers(screen_name, count, cursor, Constants.FRIENDSHIPS_FOLLOWERS);
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace OpenWeen.Core.Api.Friendships
             {
                 { nameof(uid), new StringContent(uid.ToString()) },
             };
-            return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_CREATE, param));
+            return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_DESTROY, param));
         }
         /// <summary>
         /// 取消关注一个用户
@@ -190,7 +190,7 @@ namespace OpenWeen.Core.Api.Friendships
             {
                 { nameof(screen_name), new StringContent(screen_name) },
             };
-            return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_CREATE, param));
+            return JsonConvert.DeserializeObject<UserModel>(await HttpHelper.PostAsync(Constants.FRIENDSHIPS_DESTROY, param));
         }
     }
 }
