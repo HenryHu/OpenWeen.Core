@@ -7,5 +7,8 @@ namespace OpenWeen.Core.Model.DirectMessage
     {
         [JsonProperty("user_list")]
         public List<DirectMessageUserModel> UserList { get; set; }
+
+        [JsonProperty("totalNumber")]
+        public new int TotalNumber { get; set; }
     }
 }

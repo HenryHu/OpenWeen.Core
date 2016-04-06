@@ -46,6 +46,8 @@ namespace OpenWeen.Core.Api
                 { nameof(uid), uid },
                 { nameof(count), count.ToString() },
                 { nameof(page), page.ToString() },
+                { nameof(since_id), since_id.ToString() },
+                { nameof(max_id), max_id.ToString() },
             };
             return JsonConvert.DeserializeObject<DirectMessageListModel>(await HttpHelper.GetStringAsync(Constants.DIRECT_MESSAGES_CONVERSATION, param));
         }
@@ -77,15 +79,18 @@ namespace OpenWeen.Core.Api
         /// <param name="text">要发送的私信内容，需要做URLencode，内容小于300个汉字。</param>
         /// <param name="id">需要发送的微博ID。</param>
         /// <returns></returns>
-        public static async Task Send(long uid, string text, long id)
+        public static async Task<DirectMessageModel> Send(long uid, string text, long id = -1)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
                 { nameof(uid), new StringContent(uid.ToString()) },
                 { nameof(text), new StringContent(text) },
-                { nameof(id), new StringContent(id.ToString()) },
             };
-            await HttpHelper.PostAsync(Constants.DIRECT_MESSAGES_SEND, param);
+            if (id > 0)
+            {
+                param.Add(nameof(id), new StringContent(id.ToString()));
+            }
+            return JsonConvert.DeserializeObject<DirectMessageModel>(await HttpHelper.PostAsync(Constants.DIRECT_MESSAGES_SEND, param));
         }
 
         /// <summary>
