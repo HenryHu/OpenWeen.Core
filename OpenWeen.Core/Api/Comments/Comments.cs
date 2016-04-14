@@ -46,7 +46,7 @@ namespace OpenWeen.Core.Api
         /// <param name="page">返回结果的页码，默认为1。</param>
         /// <param name="filter_by_source">来源筛选类型，0：全部、1：来自微博的评论、2：来自微群的评论，默认为0。</param>
         /// <returns></returns>
-        public static async Task<CommentListModel> GetCommentByMe(long since_id = 0, long max_id = 0, int count = 50, int page = 0, SourceType filter_by_source = SourceType.All)
+        public static async Task<CommentListModel> GetCommentByMe(long since_id = 0, long max_id = 0, int count = 50, int page = 1, SourceType filter_by_source = SourceType.All)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -69,7 +69,7 @@ namespace OpenWeen.Core.Api
         /// <param name="filter_by_author">作者筛选类型，0：全部、1：我关注的人、2：陌生人，默认为0。</param>
         /// <param name="filter_by_source">来源筛选类型，0：全部、1：来自微博的评论、2：来自微群的评论，默认为0。</param>
         /// <returns></returns>
-        public static async Task<CommentListModel> GetCommentToMe(long since_id = 0, long max_id = 0, int count = 50, int page = 0, AuthorType filter_by_author = AuthorType.All, SourceType filter_by_source = SourceType.All)
+        public static async Task<CommentListModel> GetCommentToMe(long since_id = 0, long max_id = 0, int count = 50, int page = 1, AuthorType filter_by_author = AuthorType.All, SourceType filter_by_source = SourceType.All)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -92,7 +92,7 @@ namespace OpenWeen.Core.Api
         /// <param name="page">返回结果的页码，默认为1。</param>
         /// <param name="trim_user">返回值中user字段开关，0：返回完整user字段、1：user字段仅返回user_id，默认为0。</param>
         /// <returns></returns>
-        public static async Task<CommentListModel> GetComment(long since_id = 0, long max_id = 0, int count = 50, int page = 0, int trim_user = 0)
+        public static async Task<CommentListModel> GetComment(long since_id = 0, long max_id = 0, int count = 50, int page = 1, int trim_user = 0)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
@@ -115,7 +115,7 @@ namespace OpenWeen.Core.Api
         /// <param name="filter_by_author">作者筛选类型，0：全部、1：我关注的人、2：陌生人，默认为0。</param>
         /// <param name="filter_by_source">来源筛选类型，0：全部、1：来自微博的评论、2：来自微群的评论，默认为0。</param>
         /// <returns></returns>
-        public static async Task<CommentListModel> GetCommentMentions(long since_id = 0, long max_id = 0, int count = 50, int page = 0, AuthorType filter_by_author = AuthorType.All, SourceType filter_by_source = SourceType.All)
+        public static async Task<CommentListModel> GetCommentMentions(long since_id = 0, long max_id = 0, int count = 50, int page = 1, AuthorType filter_by_author = AuthorType.All, SourceType filter_by_source = SourceType.All)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {

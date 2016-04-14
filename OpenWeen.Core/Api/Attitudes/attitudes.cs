@@ -8,10 +8,16 @@ using OpenWeen.Core.Helper;
 
 namespace OpenWeen.Core.Api
 {
-    [Obsolete]
+    /// <summary>
+    /// 点赞
+    /// </summary>
     public class Attitudes
     {
-        [Obsolete]
+        /// <summary>
+        /// 点赞
+        /// </summary>
+        /// <param name="id">微博ID</param>
+        /// <returns></returns>
         public static async Task<bool> Like(long id)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
@@ -21,8 +27,11 @@ namespace OpenWeen.Core.Api
             };
             return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.ATTITUDE_CREATE, param)).Value<string>("attitude") == "smile";
         }
-
-        [Obsolete]
+        /// <summary>
+        /// 取消赞
+        /// </summary>
+        /// <param name="id">微博ID</param>
+        /// <returns></returns>
         public static async Task<bool> UnLike(long id)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()

@@ -5,6 +5,9 @@ namespace OpenWeen.Core.Model.Status
 {
     public class MessageModel : BaseModel
     {
+        [JsonProperty("isLongText")]
+        public bool IsLongText { get; set; }
+
         [JsonProperty("favorited")]
         public bool Favorited { get; set; }
 
