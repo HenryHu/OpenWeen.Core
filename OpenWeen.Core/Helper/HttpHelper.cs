@@ -22,12 +22,17 @@ namespace OpenWeen.Core.Helper
 
         private static async Task<string> Request(string uri, Dictionary<string, string> param, HttpMethod method)
         {
-            if (AccessToken == null)
-                throw new InvalidAccessTokenException("AccessToken is null");
+            var token = "";
+            lock (AccessToken)
+            {
+                if (AccessToken == null)
+                    throw new InvalidAccessTokenException("AccessToken is null");
+                token = AccessToken;
+            }
 
             if (param == null)
                 param = new Dictionary<string, string>();
-            param.Add("access_token", AccessToken);
+            param.Add("access_token", token);
             string jsonData = await RequestWith(uri, param, method);
 
             if (jsonData != null && (jsonData.Contains("{") || jsonData.Contains("[")))
@@ -44,8 +49,13 @@ namespace OpenWeen.Core.Helper
 
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
-            if (AccessToken == null)
-                throw new InvalidAccessTokenException("AccessToken is null");
+            var token = "";
+            lock (AccessToken)
+            {
+                if (AccessToken == null)
+                    throw new InvalidAccessTokenException("AccessToken is null");
+                token = AccessToken;
+            }
             using (var client = new HttpClient())
             {
                 if (data.Values.Count(item => item.GetType() == typeof(StreamContent)) > 0)
@@ -63,7 +73,7 @@ namespace OpenWeen.Core.Helper
                                 formData.Add(item.Value, item.Key);
                             }
                         }
-                        formData.Add(new StringContent(AccessToken), "access_token");
+                        formData.Add(new StringContent(token), "access_token");
                         using (var res = await client.PostAsync(uri, formData))
                         {
                             return await res.Content.ReadAsStringAsync();
@@ -77,7 +87,7 @@ namespace OpenWeen.Core.Helper
                     {
                         items.Add(item.Key, await item.Value.ReadAsStringAsync());
                     }
-                    items.Add("access_token", AccessToken);
+                    items.Add("access_token", token);
                     using (var formData = new FormUrlEncodedContent(items))
                     {
                         using (var res = await client.PostAsync(uri, formData))

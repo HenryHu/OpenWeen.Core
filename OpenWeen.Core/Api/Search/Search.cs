@@ -9,13 +9,30 @@ using OpenWeen.Core.Model.User;
 
 namespace OpenWeen.Core.Api.Search
 {
+    /// <summary>
+    /// 搜索
+    /// </summary>
     public class Search
     {
-        public static async Task<MessageListModel> SearchStatus(string q, int count, int page)
+        /// <summary>
+        /// 搜索与指定的一个或多个条件相匹配的微博
+        /// </summary>
+        /// <param name="q">搜索的关键字</param>
+        /// <param name="count">单页返回的记录条数，默认为10，最大为50。</param>
+        /// <param name="page">返回结果的页码，默认为1。</param>
+        /// <returns></returns>
+        public static async Task<MessageListModel> SearchStatus(string q, int count = 10, int page = 1)
             => await Searching<MessageListModel>(q, count, page, Constants.SEARCH_STATUSES);
 
-        public static async Task<UserModel> SearchUsers(string q, int count, int page)
-            => await Searching<UserModel>(q, count, page, Constants.SEARCH_USERS);
+        /// <summary>
+        /// 通过关键词搜索用户
+        /// </summary>
+        /// <param name="q">搜索的关键字</param>
+        /// <param name="count">单页返回的记录条数，默认为10，最大为50。</param>
+        /// <param name="page">返回结果的页码，默认为1。</param>
+        /// <returns></returns>
+        public static async Task<UserListModel> SearchUsers(string q, int count = 10, int page = 1)
+            => await Searching<UserListModel>(q, count, page, Constants.SEARCH_USERS);
 
         private static async Task<T> Searching<T>(string q, int count, int page, string uri)
         {
