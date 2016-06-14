@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using OpenWeen.Core.Model.Status;
 
 namespace OpenWeen.Core.Model.Comment
@@ -16,5 +17,14 @@ namespace OpenWeen.Core.Model.Comment
 
         [JsonProperty("reply_comment")]
         public CommentModel ReplyComment { get; set; }
+
+        [JsonProperty("pic_infos")]
+        public IDictionary<string, PicInfoModel> PicInfos { get; set; }
+
+        [JsonProperty("pic_ids")]
+        public string[] PicIds { get; set; }
+
     }
+
+    
 }

@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OpenWeen.Core.Exception;
 using OpenWeen.Core.Helper;
+using OpenWeen.Core.Model;
+using System.Linq;
 
 namespace OpenWeen.Core.Api
 {
@@ -19,7 +21,7 @@ namespace OpenWeen.Core.Api
         /// <returns></returns>
         public static async Task<string> Shorten(string url)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>()
+            Dictionary<string, string> param = new Dictionary<string, string>
             {
                 { "url_long", url},
             };
@@ -37,7 +39,7 @@ namespace OpenWeen.Core.Api
         /// <returns></returns>
         public static async Task<string> Expand(string url)
         {
-            Dictionary<string, string> param = new Dictionary<string, string>()
+            Dictionary<string, string> param = new Dictionary<string, string>
             {
                 { "url_short", url},
             };
@@ -46,6 +48,22 @@ namespace OpenWeen.Core.Api
                 return res.Value<string>("url_long");
             else
                 throw new ShortUrlException($"Can not expand {url}");
+        }
+        /// <summary>
+        /// 批量获取短链接的富内容信息
+        /// </summary>
+        /// <param name="urls">需要获取富内容信息的短链接，最多不超过20个</param>
+        /// <returns></returns>
+        public static async Task<UrlInfoListModel> Info(params string[] urls)
+        {
+            if (urls.Length > 20)
+            {
+                throw new System.ArgumentOutOfRangeException();
+            }
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            foreach (var item in urls)
+                param.Add("url_short", item);
+            return JsonConvert.DeserializeObject<UrlInfoListModel>(await HttpHelper.GetStringAsync(Constants.SHORT_URL_INFO, param));
         }
     }
 }

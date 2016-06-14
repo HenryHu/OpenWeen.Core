@@ -23,7 +23,7 @@
         public const string USER_TIMELINE = SINA_BASE_URL + "statuses/user_timeline.json";//UserTimeline.GetUserTimeline
         public const string BILATERAL_TIMELINE = SINA_BASE_URL + "statuses/bilateral_timeline.json";//Bilateral.GetBilateral
         public const string TIMELINE_BATCH = SINA_BASE_URL + "statuses/timeline_batch.json";//Timeline.GetTimelineBatch
-        public const string MENTIONS = SINA_BASE_URL + "statuses/mentions.json";//Mentions.GetMentions
+        public const string MENTIONS = "http://api.weibo.cn/2/statuses/mentions";//Mentions.GetMentions
         public const string MENTIONS_SHIELD = SINA_BASE_URL + "statuses/mentions/shield.json";//Mentions.Shield
         public const string REPOST_TIMELINE = SINA_BASE_URL + "statuses/repost_timeline.json";//Repost.GetRepost
         public const string UPDATE = SINA_BASE_URL + "statuses/update.json";//PostWeibo.Post
@@ -34,16 +34,16 @@
         public const string UPLOAD_URL_TEXT = SINA_BASE_URL + "statuses/upload_url_text.json";//PostWeibo.PostWithMultiPics
         public const string QUERY_ID = SINA_BASE_URL + "statuses/queryid.json";//Query.QueryID
         public const string QUERY_MID = SINA_BASE_URL + "statuses/querymid.json";//Query.QueryMID
-        public const string SHOW = SINA_BASE_URL + "statuses/show.json";//Query.GetStatus
+        public const string SHOW = "http://api.weibo.cn/2/statuses/show";//Query.GetStatus
         public const string SHOW_BATCH = SINA_BASE_URL + "statuses/show_batch.json";//Query.GetStatus
         public const string EMOTIONS = SINA_BASE_URL + "emotions.json";//Emotions.GetEmotions
         public const string FILTER_CREATE = SINA_BASE_URL + "statuses/filter/create.json";//Filter.Create
 
         // Comments
         public const string COMMENTS_TIMELINE = SINA_BASE_URL + "comments/timeline.json";//Comments.GetComment,Comment.GetCommentSince
-        public const string COMMENTS_MENTIONS = SINA_BASE_URL + "comments/mentions.json";//Comments.GetCommentMentions
-        public const string COMMENTS_TO_ME = SINA_BASE_URL + "comments/to_me.json";//Comments.GetCommentToMe
-        public const string COMMENTS_BY_ME = SINA_BASE_URL + "comments/by_me.json";//Comments.GetCommentByMe
+        public const string COMMENTS_MENTIONS = "https://api.weibo.com/2/comments/mentions.json";//Comments.GetCommentMentions
+        public const string COMMENTS_TO_ME = "http://api.weibo.cn/2/comments/to_me";//Comments.GetCommentToMe
+        public const string COMMENTS_BY_ME = "http://api.weibo.cn/2/comments/by_me";//Comments.GetCommentByMe
         public const string COMMENTS_SHOW = SINA_BASE_URL + "comments/show.json";//Comments.GetCommentStatus
         public const string COMMENTS_CREATE = SINA_BASE_URL + "comments/create.json";//Comments.PostComment
         public const string COMMENTS_REPLY = SINA_BASE_URL + "comments/reply.json";//Comments.Reply
@@ -82,7 +82,7 @@
         public const string FRIENDSHIPS_FRIENDS_BILATERAL = SINA_BASE_URL + "friendships/friends/bilateral.json";//Friends.GetBliateral
         public const string FRIENDSHIPS_FOLLOWERS_ACTIVE = SINA_BASE_URL + "friendships/followers/active.json";//Friends.GetActiveFollowers
         public const string FRIENDSHIPS_FRIENDS_CHAIN = SINA_BASE_URL + "friendships/friends_chain/followers.json";//Friends.GetFriendsChain
-        public const string FRIENDSHIPS_GROUPS = SINA_BASE_URL + "friendships/groups.json";//Groups.GetGroups
+        public const string FRIENDSHIPS_GROUPS = "http://api.weibo.cn/2/groups";//Groups.GetGroups
         public const string FRIENDSHIPS_GROUPS_IS_MEMBER = SINA_BASE_URL + "friendships/groups/is_member.json";//Groups.IsMember
         public const string FRIENDSHIPS_GROUPS_TIMELINE = SINA_BASE_URL + "friendships/groups/timeline.json";//Groups.GetGroupTimeline
         public const string FRIENDSHIPS_GROUPS_CREATE = SINA_BASE_URL + "friendships/groups/create.json";//Groups.CreateGroup
@@ -110,5 +110,6 @@
         // Short Url
         public const string SHORT_URL_SHORTEN = SINA_BASE_URL + "short_url/shorten.json";//ShortUrl.Shorten
         public const string SHORT_URL_EXPAND = SINA_BASE_URL + "short_url/expand.json";//ShortUrl.Expand
+        public const string SHORT_URL_INFO = SINA_BASE_URL + "short_url/info.json";//ShortUrl.Info
     }
 }

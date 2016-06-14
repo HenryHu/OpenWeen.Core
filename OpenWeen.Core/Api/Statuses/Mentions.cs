@@ -36,6 +36,8 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(filter_by_author), filter_by_author.ToString("D") },
                 { nameof(filter_by_source), filter_by_source.ToString("D") },
                 { nameof(filter_by_type), filter_by_type.ToString("D") },
+                { "from","1055095010" },
+                { "source", "1" }
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.MENTIONS, param));
         }

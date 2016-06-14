@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Newtonsoft.Json;
+using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.User;
 
 namespace OpenWeen.Core.Model
@@ -29,5 +30,8 @@ namespace OpenWeen.Core.Model
 
         [JsonProperty("user")]
         public UserModel User { get; set; }
+
+        [JsonProperty("url_struct")]
+        public UrlStructModel[] UrlStruct { get; set; }
     }
 }

@@ -100,6 +100,7 @@
     <Compile Include="Model\Types\SourceType.cs" />
     <Compile Include="Model\Types\WeiboVisibility.cs" />
     <Compile Include="Model\UnReadModel.cs" />
+    <Compile Include="Model\UrlInfoModel.cs" />
     <Compile Include="Model\User\UserBaseModel.cs" />
     <Compile Include="Model\User\UserListModel.cs" />
     <Compile Include="Model\User\UserModel.cs" />

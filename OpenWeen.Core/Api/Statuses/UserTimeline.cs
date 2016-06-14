@@ -58,6 +58,8 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(base_app), base_app.ToString() },
                 { nameof(feature), feature.ToString("D") },
                 { nameof(trim_user), trim_user.ToString() },//TODO: Change MessageListModel to user_id
+                { "from","1055095010" },
+                { "source", "1" }
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.USER_TIMELINE, param));
         }
@@ -86,6 +88,8 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(base_app), base_app.ToString() },
                 { nameof(feature), feature.ToString("D") },
                 { nameof(trim_user), trim_user.ToString() },//TODO: Change MessageListModel to user_id
+                { "from","1055095010" },
+                { "source", "1" }
             };
             return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.USER_TIMELINE, param));
         }

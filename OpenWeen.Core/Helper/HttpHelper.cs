@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,53 +12,34 @@ namespace OpenWeen.Core.Helper
 {
     internal static class HttpHelper
     {
-        private static async Task<string> RequestWith(string uri, Dictionary<string, string> param, HttpMethod method)
-        {
-            var req = WebRequest.CreateHttp(UrlEncode(uri, param));
-            req.Method = method.Method;
-            using (var res = await req.GetResponseAsync())
-            using (var reader = new StreamReader(res.GetResponseStream()))
-                return await reader.ReadToEndAsync();
-        }
-
-        private static async Task<string> Request(string uri, Dictionary<string, string> param, HttpMethod method)
-        {
-            var token = "";
-            lock (AccessToken)
-            {
-                if (AccessToken == null)
-                    throw new InvalidAccessTokenException("AccessToken is null");
-                token = AccessToken;
-            }
-
-            if (param == null)
-                param = new Dictionary<string, string>();
-            param.Add("access_token", token);
-            string jsonData = await RequestWith(uri, param, method);
-
-            if (jsonData != null && (jsonData.Contains("{") || jsonData.Contains("[")))
-                return jsonData;
-            else
-                throw new InvalidResponseException($"response '{jsonData}' is invalid");
-        }
 
         private static string UrlEncode(string uri, Dictionary<string, string> param)
             => param != null ? $"{uri}?{string.Join("&", param.Select(kvp => $"{kvp.Key}={kvp.Value}"))}" : uri;
 
         internal static async Task<string> GetStringAsync(string uri, Dictionary<string, string> param)
-            => await Request(uri, param, HttpMethod.Get);
+        {
+            if (AccessToken == null)
+                throw new InvalidAccessTokenException("AccessToken is null");
+            if (param == null)
+                param = new Dictionary<string, string>();
+            param.Add("access_token", AccessToken);
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(5);
+                using (var res = await client.GetAsync(UrlEncode(uri, param)))
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+            }
+        }
 
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
-            var token = "";
-            lock (AccessToken)
-            {
-                if (AccessToken == null)
-                    throw new InvalidAccessTokenException("AccessToken is null");
-                token = AccessToken;
-            }
+            if (AccessToken == null)
+                throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromSeconds(5);
                 if (data.Values.Count(item => item.GetType() == typeof(StreamContent)) > 0)
                 {
                     using (var formData = new MultipartFormDataContent())
@@ -73,7 +55,7 @@ namespace OpenWeen.Core.Helper
                                 formData.Add(item.Value, item.Key);
                             }
                         }
-                        formData.Add(new StringContent(token), "access_token");
+                        formData.Add(new StringContent(AccessToken), "access_token");
                         using (var res = await client.PostAsync(uri, formData))
                         {
                             return await res.Content.ReadAsStringAsync();
@@ -87,7 +69,7 @@ namespace OpenWeen.Core.Helper
                     {
                         items.Add(item.Key, await item.Value.ReadAsStringAsync());
                     }
-                    items.Add("access_token", token);
+                    items.Add("access_token", AccessToken);
                     using (var formData = new FormUrlEncodedContent(items))
                     {
                         using (var res = await client.PostAsync(uri, formData))

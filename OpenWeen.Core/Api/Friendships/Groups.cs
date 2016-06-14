@@ -19,7 +19,7 @@ namespace OpenWeen.Core.Api.Friendships
         /// </summary>
         /// <returns></returns>
         public static async Task<GroupListModel> GetGroups()
-            => JsonConvert.DeserializeObject<GroupListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_GROUPS, null));
+            => JsonConvert.DeserializeObject<GroupListModel>(await HttpHelper.GetStringAsync(Constants.FRIENDSHIPS_GROUPS, new Dictionary<string, string> { { "source", "1" }, { "from", "1055095010" } }));
 
         /// <summary>
         /// 判断某个用户是否是当前登录用户指定好友分组内的成员
