@@ -18,7 +18,7 @@ namespace OpenWeen.Core.Helper
 
         internal static async Task<string> GetStringAsync(string uri, Dictionary<string, string> param)
         {
-            if (AccessToken == null)
+            if (string.IsNullOrEmpty(AccessToken))
                 throw new InvalidAccessTokenException("AccessToken is null");
             if (param == null)
                 param = new Dictionary<string, string>();
@@ -35,7 +35,7 @@ namespace OpenWeen.Core.Helper
 
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
-            if (AccessToken == null)
+            if (string.IsNullOrEmpty(AccessToken))
                 throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
             {
