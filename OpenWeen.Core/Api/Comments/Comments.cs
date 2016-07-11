@@ -55,9 +55,6 @@ namespace OpenWeen.Core.Api
                 { nameof(since_id), since_id.ToString() },
                 { nameof(max_id), max_id.ToString() },
                 { nameof(filter_by_source), filter_by_source.ToString("D") },
-                { "from","1055095010" },
-                { "v_p", "29" },
-                { "source", "1" }
             };
             return JsonConvert.DeserializeObject<CommentListModel>(await HttpHelper.GetStringAsync(Constants.COMMENTS_BY_ME, param));
         }
@@ -82,9 +79,6 @@ namespace OpenWeen.Core.Api
                 { nameof(max_id), max_id.ToString() },
                 { nameof(filter_by_author), filter_by_author.ToString("D") },
                 { nameof(filter_by_source), filter_by_source.ToString("D") },
-                { "from","1055095010" },
-                { "source", "1" },
-                { "v_p", "29" },
             };
             return JsonConvert.DeserializeObject<CommentListModel>(await HttpHelper.GetStringAsync(Constants.COMMENTS_TO_ME, param));
         }
@@ -131,9 +125,6 @@ namespace OpenWeen.Core.Api
                 { nameof(max_id), max_id.ToString() },
                 { nameof(filter_by_author), filter_by_author.ToString("D") },
                 { nameof(filter_by_source), filter_by_source.ToString("D") },
-                { "from","1055095010" },
-                { "source", "1" },
-                { "v_p", "29" },
             };
             return JsonConvert.DeserializeObject<CommentListModel>(await HttpHelper.GetStringAsync(Constants.COMMENTS_MENTIONS, param));
         }

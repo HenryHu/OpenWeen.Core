@@ -32,8 +32,6 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(count), count.ToString() },
                 { nameof(page), page.ToString() },
                 { nameof(filter_by_author), filter_by_author.ToString("D") },
-                { "from","1055095010" },
-                { "source", "1" }
             };
             return JsonConvert.DeserializeObject<RepostListModel>(await HttpHelper.GetStringAsync(Constants.REPOST_TIMELINE, param));
         }

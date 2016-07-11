@@ -25,7 +25,7 @@ namespace OpenWeen.Core.Helper
             param.Add("access_token", AccessToken);
             using (var client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromSeconds(5);
+                client.Timeout = TimeSpan.FromSeconds(30);
                 using (var res = await client.GetAsync(UrlEncode(uri, param)))
                 {
                     return await res.Content.ReadAsStringAsync();
@@ -39,7 +39,6 @@ namespace OpenWeen.Core.Helper
                 throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromSeconds(5);
                 if (data.Values.Count(item => item.GetType() == typeof(StreamContent)) > 0)
                 {
                     using (var formData = new MultipartFormDataContent())
@@ -64,6 +63,7 @@ namespace OpenWeen.Core.Helper
                 }
                 else
                 {
+                    client.Timeout = TimeSpan.FromSeconds(5);
                     var items = new Dictionary<string, string>();
                     foreach (var item in data)
                     {

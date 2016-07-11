@@ -53,13 +53,13 @@ namespace OpenWeen.Core.Api.Statuses
         /// 根据微博ID获取单条微博内容
         /// </summary>
         /// <param name="id">需要获取的微博ID。</param>
+        /// <param name="isGetLongText">是否是长微博</param>
         /// <returns></returns>
         public static async Task<MessageModel> GetStatus(long id, bool isGetLongText = false)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
                 { nameof(id), id.ToString() },
-                { "source", "1" },
                 { nameof(isGetLongText), isGetLongText ? "1" : "0" },
             };
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.GetStringAsync(Constants.SHOW, param));

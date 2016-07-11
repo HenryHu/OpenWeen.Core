@@ -25,6 +25,8 @@ namespace OpenWeen.Core.Model
         public string Description { get; set; }
         [JsonProperty("url_short")]
         public string UrlShort { get; set; }
+        [JsonProperty("url_long")]
+        public string UrlLong { get; set; }
         [JsonProperty("annotations")]
         internal object annotations;
         public List<AnnotationModel> AnnotationList => JsonConvert.DeserializeObject<List<AnnotationModel>>(annotations.ToString());

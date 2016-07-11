@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
-using System.Linq;
-using OpenWeen.Core.Model;
 
 namespace OpenWeen.Core.Api.Statuses
 {
@@ -16,8 +12,6 @@ namespace OpenWeen.Core.Api.Statuses
     /// </summary>
     public class Home
     {
-        private const string PATTERN = "http://t.cn/([A-Z_a-z][A-Z_a-z0-9]*)";
-
         /// <summary>
         /// 获取当前登录用户及其所关注（授权）用户的最新微博
         /// </summary>
@@ -40,35 +34,8 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(base_app), base_app.ToString() },
                 { nameof(feature), feature.ToString("D") },
                 { nameof(trim_user), trim_user.ToString() },//TODO: Change MessageListModel to user_id
-                { "from","1055095010" },
-                { "source", "1" }
             };
-            var item = JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
-            item.Statuses = (await Task.WhenAll(item.Statuses.Select(async s => await GetUrlInfo(s)))).ToList();
-            return item;
-        }
-
-        private static async Task<MessageModel> GetUrlInfo(MessageModel status)
-        {
-            if (status.UrlStruct != null || !Regex.IsMatch(status.Text, PATTERN))
-            {
-                if (status.RetweetedStatus != null)
-                    status.RetweetedStatus = await GetUrlInfo(status.RetweetedStatus);
-                return status;
-            }
-            var matches = Regex.Matches(status.Text, PATTERN);
-            UrlInfoListModel result;
-            try
-            {
-                result = await ShortUrl.Info(matches.Cast<Match>().Select(m => m.Value).ToArray());
-                status.UrlStruct = result.Urls.Select(item => new UrlStructModel() { Type = (item.AnnotationList?.FirstOrDefault() ?? item.Annotations)?.Item?.ObjectType, UrlTitle = (item.AnnotationList?.FirstOrDefault() ?? item.Annotations)?.Item?.DisplayName, ShortUrl = item.UrlShort, PicIds = (item.AnnotationList?.FirstOrDefault() ?? item.Annotations)?.Item?.PicIds, OriUrl = (item.AnnotationList?.FirstOrDefault() ?? item.Annotations)?.Item?.Url }).ToArray();
-            }
-            catch (System.Exception)
-            {
-            }
-            if (status.RetweetedStatus != null)
-                status.RetweetedStatus = await GetUrlInfo(status.RetweetedStatus);
-            return status;
+            return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
         }
     }
 }

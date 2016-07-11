@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using OpenWeen.Core.Model.Comment;
 
 namespace OpenWeen.Core.Model.Status
 {
     public class MessageModel : BaseModel
     {
-        [JsonProperty("isLongText")]
-        public bool IsLongText { get; set; }
+        //[JsonProperty("isLongText")]
+        //public bool IsLongText { get; set; }
 
         [JsonProperty("favorited")]
         public bool Favorited { get; set; }
@@ -54,37 +53,24 @@ namespace OpenWeen.Core.Model.Status
         [JsonProperty("mlevel")]
         public int MLevel { get; set; }
 
+        [JsonProperty("longText")]
+        public LongTextModel LongText { get; set; }
+
         [JsonProperty("visible")]
         public WeiboVisibilityModel Visible { get; set; }
 
-        public List<PictureModel> PicUrls
-        {
-            get
-            {
-                if (pic_urls == null && PicInfos != null)
-                {
-                    pic_urls = new List<PictureModel>();
-                    foreach (var item in PicInfos)
-                    {
-                        pic_urls.Add(new PictureModel { PicID = item.Key, BmiddlePic = item.Value.Bmiddle.Url, ThumbnailPic = item.Value.Thumbnail.Url, OriginalPic = item.Value.Original.Url });
-                    }
-                }
-                return pic_urls;
-            }
-        }
-
         [JsonProperty("pic_urls")]
-        internal List<PictureModel> pic_urls;
-
-        [JsonProperty("pic_infos")]
-        public IDictionary<string, PicInfoModel> PicInfos { get; set; }
-
-        [JsonProperty("longText")]
-        public LongTextModel LongText { get; set; }
+        public List<PictureModel> PicUrls { get; set; }
 
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 
+    public class LongTextModel
+    {
+        [JsonProperty("longTextContent")]
+        public string Content { get; set; }
+
+    }
     public class UrlStructModel
     {
         [JsonProperty("short_url")]
@@ -129,17 +115,5 @@ namespace OpenWeen.Core.Model.Status
     {
         [JsonProperty("woriginal")]
         public new WeiboImageModel Original { get; set; }
-    }
-
-    public class LongTextModel
-    {
-        [JsonProperty("pic_ids")]
-        public string[] PicIds { get; set; }
-        [JsonProperty("mid")]
-        public string Mid { get; set; }
-        [JsonProperty("content")]
-        public string Content { get; set; }
-        [JsonProperty("url_struct")]
-        public UrlStructModel[] UrlStruct { get; set; }
     }
 }
