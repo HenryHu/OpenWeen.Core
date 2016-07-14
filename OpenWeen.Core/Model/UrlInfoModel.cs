@@ -45,7 +45,9 @@ namespace OpenWeen.Core.Model
     public class AnnotationModel
     {
         [JsonProperty("object")]
-        public ObjectModel Item { get; set; }
+        public object ObjectItem { get; set; }
+
+        public ObjectModel Item => JsonConvert.DeserializeObject<ObjectModel>(ObjectItem.ToString());
     }
 
     public class ObjectModel
@@ -58,5 +60,16 @@ namespace OpenWeen.Core.Model
         public string[] PicIds { get; set; }
         [JsonProperty("object_type")]
         public string ObjectType { get; set; }
+        [JsonProperty("object")]
+        public object UrlObject { get; set; }
+        [JsonProperty("original_url")]
+        public string OriginalUrl { get; set; }
+        [JsonProperty("stream")]
+        public StreamModel Stream { get; set; }
+    }
+    public class StreamModel
+    {
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }
