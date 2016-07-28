@@ -16,7 +16,17 @@ namespace OpenWeen.Core.Api.User
         /// </summary>
         /// <returns></returns>
         public static async Task<string> GetUid()
-            => JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.GET_UID, null)).Value<string>("uid");//TODO: Check
+            => JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.GET_UID, null)).Value<string>("uid");
+
+        public static async Task<string[]> GetUids(params string[] tokens)
+        {
+            var list = new string[tokens.Length];
+            for (int i = 0; i < tokens.Length; i++)
+                list[i] = JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.GET_UID, tokens[i], null)).Value<string>("uid");
+            return list;
+        }
+
+        public static async Task<string> GetUid(string token) => JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.GET_UID, token, null)).Value<string>("uid");
 
         /// <summary>
         /// 获取当前登录用户的API访问频率限制情况

@@ -20,9 +20,14 @@ namespace OpenWeen.Core.Helper
         {
             if (string.IsNullOrEmpty(AccessToken))
                 throw new InvalidAccessTokenException("AccessToken is null");
+            return await GetStringAsync(uri, AccessToken, param);
+        }
+
+        internal static async Task<string> GetStringAsync(string uri,string token,Dictionary<string,string> param)
+        {
             if (param == null)
                 param = new Dictionary<string, string>();
-            param.Add("access_token", AccessToken);
+            param.Add("access_token", token);
             using (var client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(30);
@@ -32,7 +37,6 @@ namespace OpenWeen.Core.Helper
                 }
             }
         }
-
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
             if (string.IsNullOrEmpty(AccessToken))
