@@ -37,9 +37,9 @@ namespace OpenWeen.Core.Model
     public enum UrlType
     {
         WebLink = 0,
-        Video,
-        Music,
-        Event,
+        Video = 1,
+        Music = 2,
+        Event = 3,
         Vote = 5,
     }
     public class AnnotationModel

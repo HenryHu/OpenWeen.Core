@@ -208,7 +208,7 @@ namespace OpenWeen.Core.Api
             {
                 { nameof(cids), new StringContent(string.Join(",", cids)) },
             };
-            return JsonConvert.DeserializeObject<IEnumerable<CommentModel>>(await HttpHelper.PostAsync(Constants.COMMENTS_DESTROY, param));
+            return JsonConvert.DeserializeObject<IEnumerable<CommentModel>>(await HttpHelper.PostAsync(Constants.COMMENTS_DESTROY_BATCH, param));
         }
     }
 }

@@ -33,7 +33,7 @@ namespace OpenWeen.Core.Api.Statuses
                 { "lat", new StringContent(plat.ToString()) },
                 { "long", new StringContent(plong.ToString()) },
             };
-            CheckForVisibility(visible, list_id, param);
+            CheckForVisibility(visible, list_id, ref param);
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.UPDATE, param));
         }
 
@@ -57,7 +57,7 @@ namespace OpenWeen.Core.Api.Statuses
                 { "lat", new StringContent(plat.ToString()) },
                 { "long", new StringContent(plong.ToString()) },
             };
-            CheckForVisibility(visible, list_id, param);
+            CheckForVisibility(visible, list_id, ref param);
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.UPLOAD, param));
         }
 
@@ -67,7 +67,7 @@ namespace OpenWeen.Core.Api.Statuses
         /// <param name="visible"></param>
         /// <param name="list_id"></param>
         /// <param name="param"></param>
-        private static void CheckForVisibility(WeiboVisibility visible, string list_id, Dictionary<string, HttpContent> param)
+        private static void CheckForVisibility(WeiboVisibility visible, string list_id, ref Dictionary<string, HttpContent> param)
         {
             if (visible == WeiboVisibility.SpecifiedGroup)
                 if (string.IsNullOrEmpty(list_id))
@@ -142,7 +142,7 @@ namespace OpenWeen.Core.Api.Statuses
                 { "lat", new StringContent(plat.ToString()) },
                 { "long", new StringContent(plong.ToString()) },
             };
-            CheckForVisibility(visible, list_id, param);
+            CheckForVisibility(visible, list_id, ref param);
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.UPLOAD_URL_TEXT, param));
         }
     }

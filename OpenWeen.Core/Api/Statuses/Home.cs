@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
+using System.Linq;
 
 namespace OpenWeen.Core.Api.Statuses
 {
@@ -35,7 +36,9 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(feature), feature.ToString("D") },
                 { nameof(trim_user), trim_user.ToString() },//TODO: Change MessageListModel to user_id
             };
-            return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
+            var item = JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
+            item.Statuses = item.Statuses.Where(status => status.User.Following).ToList();
+            return item;
         }
     }
 }
