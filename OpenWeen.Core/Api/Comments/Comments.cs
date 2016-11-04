@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenWeen.Core.Helper;
 using OpenWeen.Core.Model.Comment;
+using OpenWeen.Core.Model.Status;
 using OpenWeen.Core.Model.Types;
 
 namespace OpenWeen.Core.Api
@@ -150,15 +151,29 @@ namespace OpenWeen.Core.Api
         /// <param name="comment">评论内容，必须做URLencode，内容不超过140个汉字。</param>
         /// <param name="commentOri">当评论转发微博时，是否评论给原微博，默认为否。</param>
         /// <returns></returns>
-        public static async Task<CommentModel> PostComment(long id, string comment, bool commentOri = false)
+        public static async Task<CommentModel> PostComment(long id, string comment, bool comment_ori = false)
         {
             Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
             {
                 { nameof(id), new StringContent(id.ToString()) },
                 { nameof(comment), new StringContent(comment) },
-                { "comment_ori", new StringContent(commentOri ? "1" : "0") },
+                { nameof(comment_ori), new StringContent(comment_ori ? "1" : "0") },
             };
             return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync(Constants.COMMENTS_CREATE, param));
+        }
+        
+        public static async Task<CommentModel> PostCommentWithPic(long id, string comment, MediaModel media, bool comment_ori = false)
+        {
+            Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
+            {
+                { nameof(id), new StringContent(id.ToString()) },
+                { nameof(comment), new StringContent(comment) },
+                { nameof(comment_ori), new StringContent(comment_ori ? "1" : "0") },
+                { nameof(media), new StringContent(media.ToString()) },
+                { "source", new StringContent("211160679") },
+                { "from", new StringContent("1055095010") }
+            };
+            return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync("https://api.weibo.cn/2/comments/create", param));
         }
 
         /// <summary>
@@ -181,6 +196,23 @@ namespace OpenWeen.Core.Api
                 { nameof(without_mention), new StringContent(without_mention ? "1" : "0") },
             };
             return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync(Constants.COMMENTS_REPLY, param));
+        }
+
+
+        public static async Task<CommentModel> ReplyWithPic(long id, long cid, string comment, MediaModel media, bool comment_ori = false, bool without_mention = false)
+        {
+            Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
+            {
+                { nameof(id), new StringContent(id.ToString()) },
+                { nameof(comment), new StringContent(comment) },
+                { nameof(cid), new StringContent(cid.ToString()) },
+                { nameof(comment_ori), new StringContent(comment_ori ? "1" : "0") },
+                { nameof(without_mention), new StringContent(without_mention ? "1" : "0") },
+                { nameof(media), new StringContent(media.ToString()) },
+                { "source", new StringContent("211160679") },
+                { "from", new StringContent("1055095010") }
+            };
+            return JsonConvert.DeserializeObject<CommentModel>(await HttpHelper.PostAsync("https://api.weibo.cn/2/comments/reply", param));
         }
 
         /// <summary>

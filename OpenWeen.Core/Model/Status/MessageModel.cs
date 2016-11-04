@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace OpenWeen.Core.Model.Status
 {
@@ -60,11 +61,44 @@ namespace OpenWeen.Core.Model.Status
         public WeiboVisibilityModel Visible { get; set; }
 
         [JsonProperty("pic_urls")]
-        public List<PictureModel> PicUrls { get; set; }
+        internal List<PictureModel> _picUrls;
+
+        public List<PictureModel> PicUrls
+            => _picUrls == null && UserTimelineImage != null ?
+                    UserTimelineImage.Values.Select(item => new PictureModel(item)).ToList() :
+                    _picUrls;
+
+
+        [JsonProperty("pic_infos")]
+        public Dictionary<string,UserTimelineImageModel> UserTimelineImage { get; set; }
 
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 
+    public class UserTimelineImageModel
+    {
+        public UserTimelineImageDetailModel thumbnail { get; set; }
+        public UserTimelineImageDetailModel bmiddle { get; set; }
+        public UserTimelineImageDetailModel middleplus { get; set; }
+        public UserTimelineImageDetailModel large { get; set; }
+        public UserTimelineImageDetailModel original { get; set; }
+        public UserTimelineImageDetailModel largest { get; set; }
+        public string object_id { get; set; }
+        public string pic_id { get; set; }
+        public int photo_tag { get; set; }
+        public string type { get; set; }
+        public int pic_status { get; set; }
+    }
+
+    public class UserTimelineImageDetailModel
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+        public int cut_type { get; set; }
+        public string type { get; set; }
+    }
+   
     public class LongTextModel
     {
         [JsonProperty("longTextContent")]
@@ -89,6 +123,14 @@ namespace OpenWeen.Core.Model.Status
     }
     public class PicInfoModel
     {
+        public PicInfoModel(UserTimelineImageModel item)
+        {
+            Thumbnail = new WeiboImageModel(item.thumbnail);
+            Bmiddle = new WeiboImageModel(item.bmiddle);
+            Large = new WeiboImageModel(item.large);
+            Original = new WeiboImageModel(item.original);
+        }
+
         [JsonProperty("thumbnail")]
         public WeiboImageModel Thumbnail { get; set; }
 
@@ -104,6 +146,12 @@ namespace OpenWeen.Core.Model.Status
     }
     public class WeiboImageModel
     {
+        public WeiboImageModel(UserTimelineImageDetailModel item)
+        {
+            Url = item.url;
+            Width = item.width;
+            Height = item.height;
+        }
         [JsonProperty("url")]
         public string Url { get; set; }
         [JsonProperty("width")]
@@ -113,6 +161,11 @@ namespace OpenWeen.Core.Model.Status
     }
     public class UrlPicInfoModel : PicInfoModel
     {
+        public UrlPicInfoModel(UserTimelineImageModel item) : base(item)
+        {
+            Original = new WeiboImageModel(item.original);
+        }
+
         [JsonProperty("woriginal")]
         public new WeiboImageModel Original { get; set; }
     }

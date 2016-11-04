@@ -29,8 +29,8 @@ namespace OpenWeen.Core.Model
         public string UrlLong { get; set; }
         [JsonProperty("annotations")]
         internal object annotations;
-        public List<AnnotationModel> AnnotationList => JsonConvert.DeserializeObject<List<AnnotationModel>>(annotations.ToString());
-        public AnnotationModel Annotations => JsonConvert.DeserializeObject<AnnotationModel>(annotations.ToString());
+        public List<AnnotationModel> AnnotationList => annotations != null ? JsonConvert.DeserializeObject<List<AnnotationModel>>(annotations.ToString()) : null;
+        public AnnotationModel Annotations => annotations != null ? JsonConvert.DeserializeObject<AnnotationModel>(annotations.ToString()) : null;
         [JsonProperty("type")]
         public int Type { get; set; }//this is totally different from the document
     }

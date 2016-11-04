@@ -4,6 +4,21 @@ namespace OpenWeen.Core.Model.Status
 {
     public class PictureModel
     {
+        public PictureModel()
+        {
+
+        }
+        public PictureModel(UserTimelineImageModel item)
+        {
+            if (item != null)
+            {
+                PicID = item.pic_id;
+                ThumbnailPic = item.thumbnail.url;
+                BmiddlePic = item.bmiddle.url;
+                OriginalPic = item.original.url;
+            }
+        }
+
         [JsonProperty("pic_id")]
         public string PicID { get; set; }
 

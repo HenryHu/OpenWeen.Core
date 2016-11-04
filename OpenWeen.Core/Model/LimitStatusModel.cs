@@ -27,5 +27,9 @@ namespace OpenWeen.Core.Model
 
         [JsonProperty("user_limit")]
         public int UserLimit { get; set; }
+        [JsonProperty("error")]
+        public string Error { get; set; }
+        [JsonProperty("error_code")]
+        public string ErrorCode { get; set; }
     }
 }

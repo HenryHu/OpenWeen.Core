@@ -94,6 +94,20 @@ namespace OpenWeen.Core.Api.Statuses
             return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync(Constants.REPOST, param));
         }
 
+        public static async Task<MessageModel> RepostWithPic(long id, string status, MediaModel media, RepostType is_comment = RepostType.None)
+        {
+            Dictionary<string, HttpContent> param = new Dictionary<string, HttpContent>()
+            {
+                { nameof(status), new StringContent(string.IsNullOrEmpty(status) ? "转发微博" : status) },
+                { nameof(id), new StringContent(id.ToString()) },
+                { nameof(is_comment), new StringContent(is_comment.ToString("D")) },
+                { nameof(media), new StringContent(media.ToString()) },
+                { "source", new StringContent("211160679") },
+                { "from", new StringContent("1055095010") }
+            };
+            return JsonConvert.DeserializeObject<MessageModel>(await HttpHelper.PostAsync("https://api.weibo.cn/2/statuses/repost", param));
+        }
+
         /// <summary>
         /// 根据微博ID删除指定微博
         /// </summary>

@@ -76,6 +76,7 @@
     <Compile Include="Model\Favor\FavorTagListModel.cs" />
     <Compile Include="Model\Favor\FavorTagModel.cs" />
     <Compile Include="Model\LimitStatusModel.cs" />
+    <Compile Include="Model\Status\MediaModel.cs" />
     <Compile Include="Model\Status\PictureModel.cs" />
     <Compile Include="Model\Status\WeiboVisibilityModel.cs" />
     <Compile Include="Model\Types\AuthorType.cs" />
