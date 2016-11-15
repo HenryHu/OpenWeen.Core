@@ -36,9 +36,7 @@ namespace OpenWeen.Core.Api.Statuses
                 { nameof(feature), feature.ToString("D") },
                 { nameof(trim_user), trim_user.ToString() },//TODO: Change MessageListModel to user_id
             };
-            var item = JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
-            item.Statuses = item.Statuses.Where(status => status.User.Following).ToList();
-            return item;
+            return JsonConvert.DeserializeObject<MessageListModel>(await HttpHelper.GetStringAsync(Constants.HOME_TIMELINE, param));
         }
     }
 }

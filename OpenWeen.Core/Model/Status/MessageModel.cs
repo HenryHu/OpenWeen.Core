@@ -64,10 +64,10 @@ namespace OpenWeen.Core.Model.Status
         internal List<PictureModel> _picUrls;
 
         public List<PictureModel> PicUrls
-            => _picUrls == null && UserTimelineImage != null ?
-                    UserTimelineImage.Values.Select(item => new PictureModel(item)).ToList() :
-                    _picUrls;
+            => _picUrls ?? UserTimelineImage?.Values?.Select(item => new PictureModel(item)).ToList() ?? PicIds?.Select(id => new PictureModel(id)).ToList();
 
+        [JsonProperty("pic_ids")]
+        public List<string> PicIds { get; set; }
 
         [JsonProperty("pic_infos")]
         public Dictionary<string,UserTimelineImageModel> UserTimelineImage { get; set; }
