@@ -67,7 +67,7 @@ namespace OpenWeen.Core.Helper
                 }
                 else
                 {
-                    client.Timeout = TimeSpan.FromSeconds(5);
+                    client.Timeout = TimeSpan.FromSeconds(30);
                     var items = new Dictionary<string, string>();
                     foreach (var item in data)
                     {

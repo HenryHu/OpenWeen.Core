@@ -29,5 +29,7 @@ namespace OpenWeen.Core.Model
 
         [JsonProperty("user")]
         public UserModel User { get; set; }
+
+        public bool IsRepostList { get; set; }
     }
 }
