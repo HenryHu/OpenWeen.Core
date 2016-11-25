@@ -26,8 +26,10 @@ namespace OpenWeen.Core.Api
             {
                 { nameof(count), count.ToString() },
                 { nameof(page), page.ToString() },
+                { "source", "211160679" },
+                { "from", "1055095010" }
             };
-            return JsonConvert.DeserializeObject<BlockListModel>(await HttpHelper.GetStringAsync(Constants.BLOCKS_LIST, param));
+            return JsonConvert.DeserializeObject<BlockListModel>(await HttpHelper.GetStringAsync("https://api.weibo.cn/2/blocks/blocking", param));
         }
 
         /// <summary>
@@ -64,8 +66,10 @@ namespace OpenWeen.Core.Api
             {
                 { nameof(uid), uid.ToString() },
                 { nameof(invert), invert ? "0" : "1" },
+                { "source", "211160679" },
+                { "from", "1055095010" }
             };
-            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync(Constants.BLOCKS_EXISTS, param)).Value<bool>("result");
+            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.GetStringAsync("https://api.weibo.cn/2/blocks/exists", param)).Value<bool>("result");
         }
     }
 }

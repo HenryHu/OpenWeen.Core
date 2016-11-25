@@ -17,12 +17,12 @@ namespace OpenWeen.Core.Api
         /// </summary>
         /// <param name="uid">需要获取消息未读数的用户UID，必须是当前登录用户。</param>
         /// <returns></returns>
-        public static async Task<UnReadModel> GetUnRead(string uid)
+        public static async Task<UnReadModel> GetUnRead(string uid, bool unread_message = true)
         {
             Dictionary<string, string> param = new Dictionary<string, string>()
             {
                 { nameof(uid), uid },
-                { "unread_message", "0" },
+                { nameof(unread_message), unread_message ? "1" : "0" },
             };
             return JsonConvert.DeserializeObject<UnReadModel>(await HttpHelper.GetStringAsync(Constants.REMIND_UNREAD_COUNT, param));
         }

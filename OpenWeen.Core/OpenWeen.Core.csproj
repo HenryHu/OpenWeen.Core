@@ -68,6 +68,8 @@
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\LoginDataHelper.cs" />
     <Compile Include="Helper\PictureHelper.cs" />
+    <Compile Include="Model\Attitude\AttitudeListModel.cs" />
+    <Compile Include="Model\Attitude\AttitudeModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Block\BlockListModel.cs" />
     <Compile Include="Model\Block\BlockModel.cs" />
