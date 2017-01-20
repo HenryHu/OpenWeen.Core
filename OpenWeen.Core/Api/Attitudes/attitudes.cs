@@ -26,7 +26,7 @@ namespace OpenWeen.Core.Api
                 { "attitude", new StringContent("smile") },
                 { nameof(id), new StringContent(id.ToString()) },
             };
-            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.ATTITUDE_CREATE, param)).Value<string>("attitude") == "smile";
+            return JsonConvert.DeserializeObject<JObject>(await HttpHelper.PostAsync(Constants.ATTITUDE_CREATE, param)).Value<string>("attitude") == "heart";
         }
         /// <summary>
         /// 取消赞

@@ -23,6 +23,12 @@ namespace OpenWeen.Core.Model
 
         [JsonProperty("text")]
         public string Text { get; set; }
+        
+        [JsonProperty("source_allowclick")]
+        public int SourceAllowclick { get; set; }
+
+        [JsonProperty("source_type")]
+        public int SourceType { get; set; }
 
         [JsonProperty("source")]
         public string Source { get; set; }

@@ -8,9 +8,6 @@ namespace OpenWeen.Core.Model.Comment
         [JsonProperty("source_allowclick")]
         public int SourceAllowClick { get; set; }
 
-        [JsonProperty("source_type")]
-        public int SourceType { get; set; }
-
         [JsonProperty("status")]
         public MessageModel Status { get; set; }
 

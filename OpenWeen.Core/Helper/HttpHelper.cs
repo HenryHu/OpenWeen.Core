@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using OpenWeen.Core.Exception;
 using static OpenWeen.Core.Api.Entity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace OpenWeen.Core.Helper
 {
@@ -23,19 +25,22 @@ namespace OpenWeen.Core.Helper
             return await GetStringAsync(uri, AccessToken, param);
         }
 
-        internal static async Task<string> GetStringAsync(string uri,string token,Dictionary<string,string> param)
+        private static string CheckForError(string json)
+        {
+            var jobj = JsonConvert.DeserializeObject<JObject>(json);
+            if (jobj.TryGetValue("error", out JToken token))
+                throw new WeiboException(token.Value<string>());
+            return json;
+        }
+
+        internal static async Task<string> GetStringAsync(string uri, string token, Dictionary<string, string> param)
         {
             if (param == null)
                 param = new Dictionary<string, string>();
             param.Add("access_token", token);
-            using (var client = new HttpClient())
-            {
-                client.Timeout = TimeSpan.FromSeconds(30);
-                using (var res = await client.GetAsync(UrlEncode(uri, param)))
-                {
-                    return await res.Content.ReadAsStringAsync();
-                }
-            }
+            using (var client = new HttpClient() { Timeout = TimeSpan.FromSeconds(30) })
+            using (var res = await client.GetAsync(UrlEncode(uri, param)))
+                return CheckForError(await res.Content.ReadAsStringAsync());
         }
         internal static async Task<string> PostAsync<TValue>(string uri, Dictionary<string, TValue> data) where TValue : HttpContent
         {
@@ -43,26 +48,20 @@ namespace OpenWeen.Core.Helper
                 throw new InvalidAccessTokenException("AccessToken is null");
             using (var client = new HttpClient())
             {
-                if (data.Values.Count(item => item.GetType() == typeof(StreamContent)) > 0)
+                if (data.Values.Any(item => item.GetType() == typeof(StreamContent)))
                 {
                     using (var formData = new MultipartFormDataContent())
                     {
                         foreach (var item in data)
                         {
                             if (item.Value.GetType() == typeof(StreamContent))
-                            {
                                 formData.Add(item.Value, item.Key, "pic.png");
-                            }
                             else
-                            {
                                 formData.Add(item.Value, item.Key);
-                            }
                         }
                         formData.Add(new StringContent(AccessToken), "access_token");
                         using (var res = await client.PostAsync(uri, formData))
-                        {
-                            return await res.Content.ReadAsStringAsync();
-                        }
+                            return CheckForError(await res.Content.ReadAsStringAsync());
                     }
                 }
                 else
@@ -70,17 +69,11 @@ namespace OpenWeen.Core.Helper
                     client.Timeout = TimeSpan.FromSeconds(30);
                     var items = new Dictionary<string, string>();
                     foreach (var item in data)
-                    {
                         items.Add(item.Key, await item.Value.ReadAsStringAsync());
-                    }
                     items.Add("access_token", AccessToken);
                     using (var formData = new FormUrlEncodedContent(items))
-                    {
-                        using (var res = await client.PostAsync(uri, formData))
-                        {
-                            return await res.Content.ReadAsStringAsync();
-                        }
-                    }
+                    using (var res = await client.PostAsync(uri, formData))
+                        return CheckForError(await res.Content.ReadAsStringAsync());
                 }
             }
         }

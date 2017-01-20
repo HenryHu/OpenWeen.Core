@@ -1,5 +1,11 @@
 ﻿namespace OpenWeen.Core.Exception
 {
+    public class WeiboException : System.Exception
+    {
+        public WeiboException() { }
+        public WeiboException(string message) : base(message) { }
+        public WeiboException(string message, System.Exception inner) : base(message, inner) { }
+    }
     public class InvalidLoginDataException : System.Exception
     {
         public InvalidLoginDataException()
